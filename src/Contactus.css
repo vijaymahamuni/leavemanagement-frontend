@@ -1,0 +1,133 @@
+
+
+
+.Contact_Style{
+  position: absolute;
+    margin-top: 85px;
+    margin-left: 18%;
+    padding: 90px 620px 215px 61px;
+    /* background-color: hsl(286, 47%, 72%); */
+    border-radius: 15px;
+
+  
+      
+    
+}
+.my-4{
+  background-color: #add9c3;
+  border:none;
+  color: black;
+  position: absolute;
+  margin-left: 16px;
+}
+.head_contact{
+  position: absolute;
+  top: 9px;
+  margin-left: 30%;
+  color: white;
+}
+.reset_tic{
+  position: absolute;
+  top: 80%;
+  left: 22%;
+
+
+
+}
+.Addmore{
+  position: absolute;
+  top: 126px;
+  left: 61%;
+}
+.AddTicket{
+  position: absolute;
+  top: 126px;
+  left: 36%;
+}
+.remove{
+  position: absolute;
+  margin-left:37%;
+  margin-top: -40px;
+
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+  top: 0px;
+  left: 249px;
+}
+.name_control{
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+  top: 38px;
+  left: 1px;
+}
+.subject_control{
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+  top: 22px;
+}
+.Message_area{
+  display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    position: relative;
+    top: 50px;
+}
+.Submit_tic{
+  position: absolute !important;
+  top:80%;
+  left: 8%;
+}
+.Update_tic{
+  position: absolute;
+  top: 80%;
+  left: 9%;
+}

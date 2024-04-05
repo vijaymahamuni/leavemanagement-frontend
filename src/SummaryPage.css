@@ -1,0 +1,91 @@
+.Summary_style{
+    position: absolute;
+    margin-top: 5%;
+    padding: 10% 91% 25% 1%;
+    background-color: aliceblue;
+    margin-left: 26px;
+    overflow: auto;
+}
+.UserFilter{
+    width: 8%;
+    position: fixed;
+    top: 196px;
+    left: 251px;
+}
+#container, #pinkDiv, #yellowDiv {
+    overflow: auto;
+    position: absolute;
+  }
+  
+ 
+.summaryYear_Selt {
+    height: 35px;
+    width: 95px;
+    background-color: #36ad5c !important;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    top: 196px;
+    left: 400px;
+}
+.userwiseYear_dropdown{
+    height: 35px;
+    width: 95px;
+    background-color: #36ad5c !important;
+    color: white;
+    font-size: 14px;
+    position: fixed;
+    top: 196px;
+    left: 250px;
+}
+.yearly_dropdown{
+    width: 8%;
+    position: fixed;
+    top: 196px;
+    left: 7%;
+
+}
+.tabledata{
+    position: relative;
+    top: 30px;
+    left: 17px;
+    overscroll-behavior-x: contain;
+}
+
+.backIcon{
+    
+    position: absolute;
+    top: 9px;
+    color: white;
+    left: 11px;
+    cursor: pointer;
+    background-color: #2e75b5 ;
+    border-radius: 20px;
+}
+.popup_month{
+    cursor: pointer;
+   
+}
+.popup_month:hover{
+    text-decoration-color: white;
+    text-decoration-line: underline ;
+}
+/* .year_submitbtn{
+    height: 35px;
+    width: 95px;
+    background-color: #36ad5c !important;
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 65px;
+    left: 12%;;
+} */
+.DoneIcon{
+    color: #69c96c;
+}
+.AbsentIcon{
+    color: #de7d76;
+}
+.OffIcon{
+    color: #f7f379;
+}

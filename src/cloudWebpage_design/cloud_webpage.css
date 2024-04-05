@@ -1,0 +1,32 @@
+.cloud_mainlayout{
+    background-image: linear-gradient(to top, #161616, #231d23, #37212a, #4a2727, #56311f);
+}
+.cloud_frontimg1{
+    margin-left: 473px;
+    margin-top: 75px;
+}
+.SIgnupin_btn{
+    margin-left: 73%;
+    margin-top: -214px;
+
+}
+.SignUp{
+    background-color: #fc733b;
+    width:128px;
+}
+.Try_for{
+    background-color: #fc733b;
+    width:128px;
+}
+.Signin{
+    color: white;
+    width:128px;
+
+}
+.Header_content{
+    position: relative;
+    top: 275px;
+    left: 77px;
+    color: white;
+}
+  

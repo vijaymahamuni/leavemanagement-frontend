@@ -1,0 +1,11 @@
+.norecord-page{
+    padding: 20px 140px 20px 140px ;
+    background-color: #c9f0e8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-weight:bold;
+    position: absolute;
+    top: 154px;
+    left: 400px;
+}

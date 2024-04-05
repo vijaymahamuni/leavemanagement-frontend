@@ -1,0 +1,146 @@
+.tickets_head{
+    position: absolute;
+    left: 16%;
+    top: 161%;
+    padding: 84px 115px 230px 111px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#Add_button{
+    position: absolute;
+    left: 76%;
+    top: 20px;
+    background-color: green;
+
+}
+.MuiTabs-root {
+    position: absolute;
+    top: 12px;
+    left: 37% !important;
+}
+.heading_tic{
+    position: absolute;
+    margin-top:-7%;
+    margin-left: 0;
+
+}
+.sampleliststl{
+    position: relative;
+    top: -15px;
+    left: 0px;
+}   
+.list_border{
+    border-bottom: 2px solid #003152;
+}
+.Tabs_Tickets{
+    margin-bottom: 14px;
+}
+.pendingTicket_Active{
+    border-radius: 35px;
+    background-color: #d48e15;
+    border: none !important;
+    font-weight: bold;
+    width: 110px;
+
+}
+.Completed_acive{
+    border-radius: 35px;
+    background-color: #29ba4b;
+    border: none !important;
+    font-weight: bold;
+    width: 110px;
+
+}
+.pendingTicket_Active:hover{
+    background-color: #e0930d;
+}
+.Completed_acive:hover{
+    background-color: green;
+}
+
+  .no-record {
+    padding: 20px 140px 20px 140px ;
+    background-color: #c9f0e8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-weight:bold;
+    position: relative;
+    top: 24px;
+  }
+.dropdown_icons{
+    position: absolute;
+    left: 593px;
+    top: 19px;
+    cursor: pointer;
+}
+.container {
+    position: absolute;
+    left: 317px;
+    top: 36px;
+    color: white;
+}
+.btn-success{
+    position: absolute;
+    left: 69%;
+    top: 25px;
+}
+.btn-danger{
+    position: absolute;
+    left: 82%;
+    top: 24px;
+}
+#Users_headingticket{
+    position: relative;
+    top: 10px;
+    color: white;
+    left: -18px;
+}
+#Status_headtic{
+    position: relative;
+    top: 10px;
+    color: white;
+    left: 49px;
+
+}
+.UserStatus_drop{
+    position: absolute;
+    top: 3px;
+    left: 40%;
+}
+.Userselt_drop{
+    position: absolute;
+    top: 3px;
+    left: 25%;
+}
+.Overall_dropdownshowed{
+    position: absolute;
+    top: 82px;
+    background-color: #4a9aa9;
+    padding: 35px 32px 74px 98px;
+    width: 701px;
+    left: 110px;
+    border-radius: 5px;
+}
+.usersDrop{
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+}
+#dropdown1 {
+    background-color: white !important;
+    color: black;
+    border: none;
+    position: relative;
+    left: -70px;
+    width: 155px;
+    
+  }
+#dropdown2 {
+    background-color: white !important;
+    color: black;
+    border: none;
+    width: 155px;
+  }
+ 

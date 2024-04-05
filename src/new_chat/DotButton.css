@@ -1,0 +1,13 @@
+.dot-button {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%; /* Makes the button round */
+    background-color: #e0e0e0; /* Inactive state background color */
+    cursor: pointer;
+    
+  }
+.dot-button.active {
+    background-color: #3f729b; /* Active state background color */
+  }
+  

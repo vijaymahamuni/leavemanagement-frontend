@@ -1,0 +1,55 @@
+.leavetop {
+    position: absolute;
+    top: 128%;
+    left: 22%;
+    background: #c4f5ed;
+    padding: 349px 0px 433px 778px;
+    -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+}
+.leavehead{
+    position: relative;
+      margin-top: -334px;
+      margin-left: -501px;
+      font-weight: bold;
+      
+  }  
+.rejectbtn{
+    position: absolute;
+    left: 48%;
+    top: 90%;
+    background-color: #bd452d;
+    border: none;
+    font-weight: bold;
+
+}
+.approvebtn{
+    position: absolute;
+    left: 33%;
+    top: 90%;
+    background-color: #29ba4b;
+    border: none;
+    font-weight: bold;
+}
+.approvebtn:hover{
+    background-color: #29ba4b;
+}
+.rejectbtn:hover{
+    background-color: #bd452d;
+}
+.text-center{
+    margin-top: 140px;
+}
+.confirmbtn{
+    position: absolute;
+    left: 60%;
+    top: 90%;
+    background-color: #b89d1a;
+    border: none;
+    font-weight: bold;
+}
+.LevelHeading{
+    font-weight: bold;
+    margin-bottom: 17px;
+}

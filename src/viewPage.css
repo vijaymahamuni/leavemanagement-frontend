@@ -1,0 +1,123 @@
+.ViewTop{
+  position: absolute;
+  top: 128%;
+  left: 22%;
+}
+
+.ViewTop {
+    background:#c4f5ed;
+    padding:348px 0px 330px 770px;
+
+    -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+  
+  }
+.centerview{
+    position: absolute;
+    left: 21%;
+
+}  
+.label {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+ 
+  }
+.insideViewhead{
+  position: relative;
+    margin-top: -334px;
+    margin-left: -472px;
+    font-weight: bold;
+    
+}  
+.value {
+    color: #555555;
+    position: absolute;
+    left: 27%;
+  }  
+/* .view_head{
+  position: fixed;
+  top: 16%;
+  left: 22%;
+  overflow: hidden;
+  padding: 2px 54% 2px 12px;
+  background-color: #003152;
+  color: white;
+    
+    
+}   */
+
+.container{
+  position: absolute;
+  left: 187px;
+  top: 11%;
+}
+.closebtn{
+    position: absolute;
+    left: 55%;
+    top: 84%;
+    background-color: red;
+}
+.closebtn:hover{
+  background-color: red;
+
+}
+.Editingprofile:hover{
+  background-color: green;
+}
+.Editingprofile{
+  position: absolute;
+  top: 84%;
+  left: 46%;
+  background-color: green;
+}
+
+.printbtn{
+    position: absolute;
+    left: 36%;
+    top: 84%;
+ 
+
+
+}
+.profileView{
+    width: 60px;
+    border-radius: 30px;
+}
+@media print {
+    body * {
+      visibility: hidden;
+      background-color:white;
+    
+    }
+  
+    .printable,
+ 
+  
+   
+    .printable * {
+      visibility: visible;
+    }
+    .ComponentHide {
+      
+      visibility: visible;
+     }
+   
+}
+.ComponentHide {
+  display: block;  
+  visibility:hidden;
+ }
+.ComponentShow{
+  display: block;
+
+}
+.print-content{
+  visibility: hidden;
+}
+
+.Linestyle{
+  border-bottom: 5px solid red;
+
+}

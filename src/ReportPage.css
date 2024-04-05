@@ -1,0 +1,43 @@
+.report_style{
+    position: absolute;
+    margin-top: 6%;
+    padding: 136px 143px 100px 24px;
+    background-color: aliceblue;
+    margin-left: 29px;
+}
+.css-15wwp11-MuiTableHead-root{
+    background-color: #2e75b5 !important;
+    color: white !important;
+}
+.column_cell{
+    background-color: #2e75b5 !important;
+    color: white !important;
+}
+.css-1ex1afd-MuiTableCell-root{
+    /* background-color:  #2e75b5 !important; */
+    color: black ;
+    font-weight: bold !important;
+}
+.css-1azl6jz-MuiTableCell-root{
+    color: white !important;
+    font-weight: bold !important;
+}
+.css-1ygcj2i-MuiTableCell-root{
+    color: white !important;
+    font-weight: bold !important;
+}
+/* .report_heading{
+    padding: 25px 1118px 20px 1px;
+    background-color: #2e75b5;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+} */
+.report_subhead{
+    position: absolute;
+    top: 8px;
+    left: 48px;
+    color: black;
+
+}
+

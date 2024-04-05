@@ -1,0 +1,38 @@
+
+  .message_wrapper {
+    margin-top: 0px;
+    padding: 0px 5px;
+  }
+  .message_wrapper img {
+    width: 100%;
+    border-radius: 5px;
+    height: 210px;
+  }
+
+.message_wrapper p {
+    padding: 10px;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
+    border-radius: 20px 0px 20px 20px;
+    word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+    overflow-wrap: break-word;
+}
+  .message_wrapper small {
+    display: inline-block;
+    margin-top: 10px;
+    opacity: 0.8;
+  }
+  .message_wrapper.own {
+    text-align: right;
+  }
+  .me {
+    background: #889ffc;
+    color: white;
+  }
+  .friend {
+    background: #ffffff;
+    color: black;
+
+
+  }

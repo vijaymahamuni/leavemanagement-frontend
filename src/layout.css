@@ -1,0 +1,203 @@
+body{
+  background-image: url('https://webdesignersbrisbaneblog.files.wordpress.com/2020/04/website-design-brisbane1.jpeg');
+  background-size: cover;
+}
+.navbar {
+  /* overflow: hidden; */
+  background-color:#003152;
+  top: 0px;
+  padding: 0px;
+  --bs-navbar-padding-y: -0.5rem !important;
+}
+/* .topnav a {
+  text-decoration: none;
+  color: white;
+} */
+.justnnow{
+  display:flex;
+  position: absolute;
+  justify-content: right;
+  color: #f2f2f2;
+  /* background-color: #32314f; */
+  text-align: center;
+  font-size: 25px;
+  margin-top: -45px;
+  margin-left:27%;
+  
+}
+.notification_batch{
+  position: relative;
+  top: -49px;
+  left: 54px;
+}
+.DropStyle{
+  position: absolute;
+  margin-top: -1px;
+  left: 96%;
+
+}
+.dropdown {
+  position: initial !important;
+}
+
+/* .topnav li {
+  display: flex;
+  float: left;
+  color: #f2f2f2;
+  background-color: #32314f;
+  text-align: center;
+  padding: 14px 9px;
+  list-style: none;
+  font-size: 20px;
+  border-radius: 10px;
+} */
+.home_link:hover {
+  color: white;
+}
+.user_link:hover{
+  color: white;
+}
+.dash_link:hover {
+  color: white;
+}
+.nav_link:hover{
+  color: white;
+}
+.justnnow:hover {
+  color: white;
+
+
+}
+.home_link {
+  color: white;
+  text-decoration: none;
+}
+.user_link{
+  color: white;
+  text-decoration: none;
+}
+.dash_link {
+  color: white;
+  text-decoration: none;
+}
+.nav_link{
+  color: white;
+  text-decoration: none;
+}
+.justnnow {
+  color: white;
+  text-decoration: none;
+
+
+}
+.topnav li.active {
+  background-color: #04AA6D;
+  color: black;
+}
+.Tigma-logo{
+  position: relative;
+  top: 5px;
+  left: -10px;
+  height: 63px;
+
+}
+
+.imageSizeedit{
+  width: 41px;
+  height: 42px;
+  border-radius: 20px;
+}
+/* .nav_link{
+   position: relative;
+   transition: all 0.4s;
+}
+.nav_link:hover{
+  color: white;
+}
+.nav_link::after{
+  content: '';
+  height: 2px;
+  width: 100%;
+  background-color: rgb(0,183,255);
+  display: block;
+  opacity: 0;
+
+} */
+.nav_link:hover::after
+
+{
+  opacity: 1;
+}
+.nav-item.active {
+ padding :25px 14px 29px 11px;
+ background-color: #4a9aa9 !important;
+ color: white !important;
+ text-decoration: none;
+}
+.nav-item.inactive {
+ text-decoration: none;
+ color: white;
+}
+.topnav .nav_listing .active{
+  /* padding :25px 14px 29px 11px; */
+  /* background-color: #4a9aa9 !important; */
+/* color: white !important; */
+ 
+}
+.dropdown-menu{
+  /* position: absolute; */
+  /* inset: -71px -61px auto auto !important; */
+  background-color: #498fb8 !important;
+  /* color: black !important; */
+  
+  --bs-dropdown-link-hover-bg: #003152 !important;
+    --bs-dropdown-link-active-color: #fff;
+}
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+  clear: both;
+  font-weight: 400;
+  color:white !important;
+  text-align: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--bs-dropdown-item-border-radius, 0);
+}
+.btn-lg, .btn-group-lg > .btn{
+  color: white !important;
+  background-color: #498fb8 !important;
+} 
+.Box-notification{
+  padding: 99px 902px 14px 15px;
+  position: relative;
+  left: 63%;
+
+}
+.dropdown-content {
+  position: absolute;
+  
+  left: 0;
+  top: 10%;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  z-index: 1;
+}
+.Message-Btn{
+  cursor: pointer;
+}
+.css-1howxi1-MuiTableCell-root{
+  color: white !important;
+}
+.Close-Icon{
+  position: absolute;
+  top: 103px;
+  left: 434px;
+  color: white;
+  cursor: pointer;
+}

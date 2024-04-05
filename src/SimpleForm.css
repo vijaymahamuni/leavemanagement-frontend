@@ -1,0 +1,36 @@
+ input {
+	margin: 5px 0 10px 0;
+	padding:15px 10px;
+	width:5%;
+	outline:none;
+	border:1px solid #bbb;
+	border-radius:20px;
+	display:inline-block;
+	-webkit-box-sizing:border-box;
+	   -moz-box-sizing:border-box;
+	        box-sizing:border-box;
+    -webkit-transition:0.2s ease all;
+	   -moz-transition:0.2s ease all;
+	    -ms-transition:0.2s ease all;
+	     -o-transition:0.2s ease all;
+	        transition:0.2s ease all;
+}
+.select-color{
+    margin: 5px 0 10px 0;
+	padding:15px 10px;
+	width:16%;
+    border-radius:20px;
+
+}
+.btn-redux{
+    background-color: turquoise;
+    width: 10%;
+    height: 30px;
+
+}
+.stn-redux{
+    background-color: #ed8179;
+    width: 10%;
+    height: 30px;
+
+}

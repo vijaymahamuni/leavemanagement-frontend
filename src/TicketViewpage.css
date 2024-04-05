@@ -1,0 +1,64 @@
+.TicketViewpage{
+    position: absolute;
+    top: 133px;
+    left: 23%;
+    padding:155px 82px 200px 694px;
+    background-color: #c4f5ed;
+}
+.centerview1{
+    position: absolute;
+    left: 160px;
+}  
+.label_01 {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+ 
+  }
+.Reply-Btn{
+    position: absolute;
+    left: 37%;
+    top: 84%;
+    background-color: #29ba4b;
+    border: none;
+    font-weight: bold;
+}  
+.TicketViewpage_heading{
+    position: absolute;
+    top: 10px;
+    left: 257px;
+}
+.value01{
+    
+    color: #555555;
+    position: absolute;
+    left: 187px;
+}
+.container_ticket{
+    position: absolute;
+    left: 187px;
+    top: 13%;
+}
+.container{
+    position: absolute;
+    left: 220px;
+    top: 14%;
+
+}
+.back-button{
+    position: absolute;
+    left: 50%;
+    top: 392px;
+    text-decoration: none;
+}
+.btn-primary{
+    text-decoration: none !important;
+}
+.Reply-Btn:hover{
+    background-color: green;
+}
+.chat-btn{
+    position: relative;
+    top: 175px;
+    left: -281px;
+}

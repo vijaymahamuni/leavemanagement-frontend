@@ -1,0 +1,74 @@
+
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: white 4px 4px 0 0;
+  color:black;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  position: absolute;
+  top: 420px;
+  left: 123px;
+  width: 220px;
+
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow:#4a9aa9 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+.entryIn{
+  background-color: lightgreen;
+}
+.Daily_showtable{
+  position: absolute;
+  top: 355px;
+  left: 490px;
+
+
+}
+.scrollable-cell{
+  height: 10px !important;
+  overflow-y: auto !important;
+  background-color: aqua !important;
+}
+.fixTableHead {
+	overflow-y: auto;
+	height: 200px;
+	}
+.fixTableHead thead th {
+	position: sticky;
+	top: 0;
+	}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+.Entry_heading{
+  position: absolute;
+  color: white;
+  top: -52px;
+  left: 267px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.css-1b7zacj-MuiTableCell-root{
+  line-height: 0.43 !important;
+}

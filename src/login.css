@@ -1,0 +1,134 @@
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .welcome-heading {
+    margin-top: 20px;
+    font-size: 36px;
+    color: white;
+  }
+  
+  .right-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-field {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  .emailid_log{
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid #a4bf43;
+    color: white;
+    outline: none;
+    padding-left: 10px;
+    font-size: 18px;
+    width: 75%;
+  }
+  .login-page .right-section .login-form  {
+    padding: 4vh 0;
+    width: 100%;
+}
+.login-page .right-section .login-text {
+    display: inline-block;
+    padding: 10px 30px;
+    border-bottom: 0.5px solid #8a8a8a;
+}
+.login-page .right-section .login-form .login-button {
+    height: 55px;
+    width: 200px;
+    border: none;
+    background-color: #a4bf43;
+    color: white;
+    font-size: 20px;
+    border-radius: 50px;
+    outline: none;
+    line-height: 0;
+    margin-left: 224px;
+    margin-top: 30px;
+}
+.login-page .right-section .login-text {
+    display: inline-block;
+    padding: 10px 30px;
+    border-bottom: 0.5px solid #8a8a8a;
+    color: white;
+}
+.login-page .right-section .login-form .control-container {
+    padding-bottom: 30px;
+}
+.login-page .right-section .login-form .login-input {
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid #a4bf43;
+    color: white;
+    outline: none;
+    padding-left: 10px;
+    font-size: 18px;
+    width: 40%;
+}
+.login-page .right-section {
+    text-align: center;
+    min-height: 70vh;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: end;
+    border-left: 1px solid gray;
+    padding-left: 100px;
+}
+.login-page .right-section .login-form .control-container {
+    padding-bottom: 30px;
+}
+.login-page .right-section .login-form .button-container {
+    padding-top: 30px;
+}
+.login-page .right-section .Signup-link{
+  list-style: none !important;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  top: -25px;
+  left: 10px;
+}

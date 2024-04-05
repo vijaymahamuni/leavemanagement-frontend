@@ -1,0 +1,176 @@
+.Leavelisting{
+    position: absolute;
+    top: 107px;
+    left: 148px;
+    padding: 200px 10px 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+}
+#addleave{
+    position: absolute;
+    left: 78%;
+    top: 14px;
+    background-color: green;
+}
+.viewed{
+    cursor: pointer;
+}
+.leavelisting{
+    position: relative;
+    top: -128px;
+}
+.leaveHeading{
+    position: absolute;
+    top: 17px;
+    left: 2%;
+    font-size: 24px;
+    font-weight: bold;
+}
+.ActiveBtn{
+    border-radius: 35px;
+    background-color: #d48e15;
+    border: none !important;
+    font-weight: bold;
+}
+.ApprovedActive{
+    border-radius: 35px;
+    background-color: #29ba4b;
+    border: none !important;
+    font-weight: bold;
+}
+.RejectedActive{
+    border-radius: 35px;
+    background-color:#bd452d;
+    border: none !important;
+    font-weight: bold;
+}
+
+/* .MuiTabs-root {
+    position: relative;
+    top: -189px;
+    left: 15%;
+
+} */
+.MuiTabs-root{
+    position: absolute;
+    top: 12px;
+    left: 55%;
+}
+.page-item .active{
+ 
+    background-color: #bd452d;
+}
+.pagination{
+    position: absolute;
+    top: 83%;
+}
+.Viewlink{
+    text-decoration: none;
+    color: black;
+}
+.permisson_filter{
+    position: absolute;
+    top: 14px;
+    left: 71%;
+}
+.Leavepermission-allDrop{
+    position: absolute;
+    top: 72px;
+    background-color: #4a9aa9;
+    padding: 35px 32px 80px 98px;
+    width: 961px;
+    left: 203px;
+    border-radius: 5px;
+}
+.permission-Statusdrop{
+    position: absolute;
+    top: 0px;
+    left: 27%;
+
+
+}
+.permission-Usersdrop{
+    position: absolute;
+    top: 0px;
+    left: 76px;
+
+}
+#per_usershead{
+    position: relative;
+    top: 10px;
+    color: white;
+    left: 55px;
+
+}
+#per_statushead{
+    position: relative;
+    top: 10px;
+    color: white;
+    left: 53px;
+}
+/* .dropdown-toggle {
+    color: black;
+    background-color: white;
+    border: none;
+  
+} */
+
+
+.datepicker-container{
+    position: absolute;
+    left: 262px;
+    top: 40px;
+}
+
+.react-datepicker-ignore-onclickoutside {
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+    width: 155px;
+    position: absolute;
+    left: 238px;
+    top: -12px;
+    height: 37px;
+
+  }
+#date_dropdown3{
+    position: absolute;
+    top: -5px;
+    left: 205px;
+    width: 155px;
+
+  }
+#per_datehead{
+    position: relative;
+    top: 15px;
+    color: white;
+    left: 292px;
+}  
+#dropdown_01{
+    background-color: white !important;
+    color: black;
+    border: none;
+    width: 155px;
+}
+#dropdown_02{
+    background-color: white !important;
+    color: black;
+    border: none;
+    width: 155px;
+
+}
+.dropdown-toggle::after {
+ 
+    margin-left: 1.255em ;
+}
+.submit_perfilter{
+    position: absolute;
+    left: 72%;
+    top: 41px;
+    background-color: green;
+    border: none;
+
+}

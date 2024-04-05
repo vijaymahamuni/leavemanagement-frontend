@@ -1,0 +1,29 @@
+.Ticket-Rise{
+    position: absolute;
+    top: 120%;
+    left: 27%;
+    padding: 55px 84px 56px 107px;
+    background-color: #c4f5ed;
+    border-radius: 15px;
+}
+.Ticket-heading{
+    position: absolute;
+    top: 9px;
+    left: 268px;
+}
+.Sending_ticketbtn{
+    position: relative;
+    left: 42%;
+    top: 20px;
+}
+.loader_ticketRaise {
+    position: absolute;
+    margin-top: 16%;
+    margin-left: 43%;
+    border: 10px solid #EAF0F6;
+    border-radius: 50%;
+    border-top: 10px solid #5173ed;
+    width: 110px;
+    height: 110px;
+    animation: spinner 4s linear infinite;
+  }

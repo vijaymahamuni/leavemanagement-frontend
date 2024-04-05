@@ -1,0 +1,14 @@
+.head_name{
+    display: flex;
+    position: absolute;
+    top: 150px;
+   
+    
+}
+.heading_para{
+    display: flex;
+    position: absolute;
+    top: 40px;
+   
+
+}
