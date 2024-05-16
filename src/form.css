@@ -11,13 +11,10 @@ body{
 	font-size: 18px;
   font-family: 'Roboto', sans-serif;
 	color: #222;
+  overflow-x:hidden;
 }
 
-.form-fname{
-  position: absolute;
-  margin-top: -60px;
-  margin-left: 40%;
-}
+
 .form-lastname{
   position: absolute;
   margin-top: -77px;
@@ -70,14 +67,14 @@ input[type=tel] {
   top: 198px;
   left: 2px;
 }
-.Email_label{
+/* .Email_label{
   position: relative;
   top: 11px;
   left: 0px;
 
-}
+} */
 .registerbtn {
-  background-color: #4565f5;
+  background-color: #4a9aa9;
   color: white;
   padding: 9px;
   margin: 8px 0;
@@ -88,13 +85,17 @@ input[type=tel] {
   opacity: 0.9;
   display: fixed;
   position: absolute;
-  top: 85%;
-  left: 42%;
+  top: 87%;
+  left: 40%;
 }
 .registerbtn:hover{
-  background-color:#2245e3;
+  background-color:#4a9aa9;
   transition: 0.7s;
 } 
+.gender-radio{
+  margin-left: 10px;
+  margin-top: 30px;
+}
 
 
 .updatebtn {
@@ -242,17 +243,11 @@ select {
   position: relative;
   top: -130px;
 }
-.Latest-regis{
-  display: flow-root;
-  margin-top: -34px;
-}
-.container{
-	max-width: 1230px;
-	width: 100%;
-}
+
+
 
 .form-wrap{
-	background: #c4f5ed;
+	/* background: #c4f5ed;
 	width: 100%;
   max-width: 830px;
   padding: 152px 70px 114px 60px;
@@ -263,34 +258,29 @@ select {
   border-radius: 10px;
 	-webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
-	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15); */
+  position: absolute;
+  margin-top: 3%;
+  background-color: #EDF4F2;
+  left: 310px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0px 0px 100px 0px;
+  width: 62%;
 }
-.SignupHead{
-  position: relative;
-  top:-32px;
-  left: 49%;
-  font-size: 35px;
 
-}
-.update_border{
-  border-bottom: 3px solid #003152;
-  position: relative;
-  top: -21px;
-}
+
 
 .signup-wrap{
-  background: #c4f5ed;
-  width: 100%;
-  max-width: 816px;
-  padding: 307px 75px 291px 60px;
+
   position: absolute;
-  left: 9%;
-  border-radius: 10px;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  height: 95vh;
-  top: 86px;
+  margin-top: 3%;
+  background-color: #EDF4F2;
+  left: 310px;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0px 0px 100px 0px;
+  width: 62%;
 }
 /* .form-wrap:before{
 	content: "";
@@ -344,25 +334,24 @@ select {
   margin-top: -75px !important;
   margin-left: 359px !important;
 }
-.gender-radio{
+/* .gender-radio{
 
   display: inherit;
   position: relative;
   top: -85px;
   color: black;
 
-}
+} */
 .ProEdit{
-  display: flex !important;
-  margin-top: -226px !important;
-  margin-left: 363px !important;
   color: black;
+  margin-top: 30px;
+  margin-left: 10px;
 
 }
 .imgstl{
   display: flex !important;
   margin-top: 37px !important;
-  margin-left: 325px !important;
+  margin-left: 0px !important;
 }
 .password{
 
@@ -378,11 +367,16 @@ select {
   margin-left: 0%;
 
 }
-.updatepage_edit{
-  position: relative;
+/* .updatepage_edit{ */
+  /* position: relative;
   left: 51px;
-  top: -33px;
-}
+  top: -33px; */
+  /* padding: 0px 0px 100px 0px;
+  width: 95%; */
+  /* background-color: #DBD7D2; */
+  /* margin-left: 40px; */
+
+/* } */
 .formheading{
   position: absolute;
   top: 9px;
@@ -449,11 +443,7 @@ select {
   color: #2196F3; /* Customize the color for checked state */
 }
 
-.alignment_lastname{
-  position: relative;
-    left: 104px;
-    top: 12px;
-}
+
 .align_password{
   position: relative;
   left: 56%;
@@ -467,4 +457,20 @@ select {
   position: relative;
     left: 51%;
     top: -14px;
+}
+
+.formfill_head{
+  padding: 5px;
+  background-color: #4a9aa9;
+}
+.SignupHead{
+  margin-left: 35px;
+  color: white;
+}
+.lastName_valid{
+  margin-left: 0px;
+}
+.split_two{
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel, Chip } from '@material-ui/core';
 import axios from 'axios';
 import "./TicketRise.css";
-import { useNavigate ,useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SweetAlert from 'react-bootstrap-sweetalert';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 function TicketRise() {
   const [to, setTo] = useState('');
   const [cc, setCC] = useState([]);
@@ -11,23 +13,24 @@ function TicketRise() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
-  const [confirmalert,setconfirmalert]=useState(false);
+  const [confirmalert, setconfirmalert] = useState(false);
   const [recipients, setrecipients] = useState([]);
-  const getUserdata = async (id,myArray) => {
+  const getUserdata = async (id, myArray) => {
     const data = await axios.get(`http://localhost:5000/ShowUsers_ticket`).then(res => {
-     
-        if(recipient==''){
-            setrecipients(res.data.data)
-        }
-      
-  })}
+
+      if (recipient == '') {
+        setrecipients(res.data.data)
+      }
+
+    })
+  }
 
 
-useEffect(()=>{
+  useEffect(() => {
     getUserdata()
-})
-let Profileid=sessionStorage.getItem("proid",Profileid)
-let ProfileEmailid=sessionStorage.getItem('Proemail',ProfileEmailid)
+  })
+  let Profileid = sessionStorage.getItem("proid", Profileid)
+  let ProfileEmailid = sessionStorage.getItem('Proemail', ProfileEmailid)
   // const handleAddCC = () => {
   //   if (ccInput.trim() !== '') {
   //     setCC([...cc, ccInput]);
@@ -50,15 +53,15 @@ let ProfileEmailid=sessionStorage.getItem('Proemail',ProfileEmailid)
       }
     }
   };
-  
-  
+
+
   const handleRemoveCC = (ccItemId) => {
     setCC(cc.filter(item => item !== ccItemId));
     if (ccInput === ccItemId) {
       setCCInput('');
     }
   };
-  
+
   const validateFields = () => {
     const errors = {};
 
@@ -78,31 +81,31 @@ let ProfileEmailid=sessionStorage.getItem('Proemail',ProfileEmailid)
     return Object.keys(errors).length === 0;
   };
   const navigate = useNavigate();
-  let Notification_type='Ticket Raising'
-  
+  let Notification_type = 'Ticket Raising'
+
   const handleSendEmail = () => {
     if (validateFields()) {
-        setLoading(true)
-    
-        const data = { to, cc, subject, message,Profileid,ProfileEmailid,Notification_type};
-        axios.post('http://localhost:5000/ShowUsers_ticket', data)
-          .then(response => {
-           
-          
-            if(response.data.status =='200'){
-              setLoading(false)
-              setconfirmalert(true)
-            }
-          })
-          .catch(error => {
-       
-            alert('Error sending email. Please check the console for details.');
-          });
-      }
+      setLoading(true)
+
+      const data = { to, cc, subject, message, Profileid, ProfileEmailid, Notification_type };
+      axios.post('http://localhost:5000/ShowUsers_ticket', data)
+        .then(response => {
+
+
+          if (response.data.status == '200') {
+            setLoading(false)
+            setconfirmalert(true)
+          }
+        })
+        .catch(error => {
+
+          alert('Error sending email. Please check the console for details.');
+        });
+    }
   };
 
 
-  const recipient =recipients;
+  const recipient = recipients;
 
   const options = [
     { value: 'Privilege', label: 'Privilege' },
@@ -122,113 +125,122 @@ let ProfileEmailid=sessionStorage.getItem('Proemail',ProfileEmailid)
   // };
   const handleCCInputChange = (e) => {
     const selectedCCId = e.target.value;
-    setCCInput(selectedCCId.toString()); 
+    setCCInput(selectedCCId.toString());
     if (selectedCCId !== '' && !cc.includes(selectedCCId)) {
       setCC([...cc, selectedCCId]);
     }
   };
-  
-  
-  const hideAlert=()=>{
+
+
+  const hideAlert = () => {
     setconfirmalert(false)
     navigate("/user/ticket/Own")
   }
-  const [Loading,setLoading]=useState(false);
+  const [Loading, setLoading] = useState(false);
+  const Backicon_ticket=()=>{
+    navigate(`/user/ticket/Own`);
+
+  }
   return (
-    <div>{Loading ?(<div animation="border"  className="loader_ticketRaise"/>):(
+    <div>{Loading ? (<div animation="border" className="loader_ticketRaise" />) : (
 
-    
-    <div className='Ticket-Rise'>
-    <div >
-    <h2 className='Ticket-heading'>Tickets</h2>
-      <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="to">To</InputLabel>
-        <Select
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          inputProps={{ id: 'to' }}
-        >
-          {recipient.map((option, index) => (
-            <MenuItem key={index} value={option.id}>
-              {option.firstname} ({option.email})
-            </MenuItem>
-          ))}
-     
-        </Select>
-        {errors.to && <span style={{ color: 'red' }}>{errors.to}</span>}
-      </FormControl>
 
-      <div style={{ marginTop: '20px' }}>
-        <FormControl fullWidth margin="normal">
-          <InputLabel htmlFor="cc">CC</InputLabel>
-          <Select
-            value={ccInput}
-            onChange={handleCCInputChange}
-            inputProps={{ id: 'cc' }}
-          >
-             {recipient.map((option, index) => (
-            <MenuItem key={index} value={option.id}>
-              {option.firstname} ({option.email})
-            </MenuItem>
-          ))}
-          </Select>
-        </FormControl>
-        <div>
-  {cc.map(ccItem => {
-    const selectedCCRecipient = recipients.find(option => option.id === ccItem);
-    if (selectedCCRecipient) {
-      return (
-        <div key={ccItem}>
-          <Chip
-            label={`${selectedCCRecipient.firstname}`}
-            onDelete={() => handleRemoveCC(ccItem)}
-            style={{ margin: '5px' }}
+      <div className='Ticket-Rise'>
+        <div >
+          <div className="ticketfill_head">
+            <ArrowBackIcon className="ticket_backicon" onClick={Backicon_ticket}></ArrowBackIcon>
+            <h4 className="tic_head">Add Ticket Raise</h4></div>      
+            <FormControl fullWidth margin="normal">
+            <InputLabel htmlFor="to">To</InputLabel>
+            <Select
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              inputProps={{ id: 'to' }}
+            >
+              {recipient.map((option, index) => (
+                <MenuItem key={index} value={option.id}>
+                  {option.firstname} ({option.email})
+                </MenuItem>
+              ))}
+
+            </Select>
+            {errors.to && <span style={{ color: 'red' }}>{errors.to}</span>}
+          </FormControl>
+
+          <div style={{ marginTop: '20px' }}>
+            <FormControl fullWidth margin="normal">
+              <InputLabel htmlFor="cc">CC</InputLabel>
+              <Select
+                value={ccInput}
+                onChange={handleCCInputChange}
+                inputProps={{ id: 'cc' }}
+              >
+                {recipient.map((option, index) => (
+                  <MenuItem key={index} value={option.id}>
+                    {option.firstname} ({option.email})
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <div>
+              {cc.map(ccItem => {
+                const selectedCCRecipient = recipients.find(option => option.id === ccItem);
+                if (selectedCCRecipient) {
+                  return (
+                    <div key={ccItem}>
+                      <Chip
+                        label={`${selectedCCRecipient.firstname}`}
+                        onDelete={() => handleRemoveCC(ccItem)}
+                        style={{ margin: '5px' }}
+                      />
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
+
+          <TextField
+            label="Subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            fullWidth
+            margin="normal"
           />
+          {errors.subject && <span style={{ color: 'red' }}>{errors.subject}</span>}
+          <TextField
+            label="Message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            fullWidth
+            multiline
+            rows={4}
+            margin="normal"
+          />
+          {errors.message && <span style={{ color: 'red' }}>{errors.message}</span>}
+
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <div className='send_ticketbtn'>
+          <Button
+            variant="contained"
+            onClick={handleSendEmail}
+            className='Sending_ticketbtn'
+          >
+            Send
+          </Button>
+          </div>
+         
         </div>
-      );
-    }
-    return null;
-  })}
-</div>
-      </div>
 
-      <TextField
-        label="Subject"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        fullWidth
-        margin="normal"
-      />
-       {errors.subject && <span style={{ color: 'red' }}>{errors.subject}</span>}
-      <TextField
-        label="Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        fullWidth
-        multiline
-        rows={4}
-        margin="normal"
-      />
-       {errors.message && <span style={{ color: 'red' }}>{errors.message}</span>}
+        {confirmalert ? <SweetAlert
+          success
+          title="Successfully Sending Your Request!"
+          onConfirm={hideAlert}
+        >
 
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSendEmail}
-        className='Sending_ticketbtn'
-      >
-        Send
-      </Button>
-    </div>
- 
-{confirmalert ?<SweetAlert
-  success
-  title="Successfully Sending Your Request!"
-  onConfirm={hideAlert}
->
-
-</SweetAlert>:<></> }
-    </div>)}
+        </SweetAlert> : <></>}
+      </div>)}
     </div>
   );
 }

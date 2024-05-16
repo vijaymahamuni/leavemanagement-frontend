@@ -5,7 +5,7 @@
   }
   
   .ViewTop {
-      background:#c4f5ed;
+      background:white;
       padding:350px 0px 330px 839px;
      -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
@@ -23,9 +23,10 @@
    
     }
   .insideViewhead{
-    position: relative;
-      margin-top: -334px;
-      margin-left: -472px;
+    position: absolute;
+    top: 7px;
+    left: 50px;
+
   }  
   .value {
       color: #555555;
@@ -113,5 +114,16 @@
   .print-content{
     visibility: hidden;
   }
-  
+  .viewhead{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #4a9aa9;
+    width: 100%;
+    padding: 5px;
+  }
+  .inside_prohead{
+    margin-left: 50px;
+    color: white;
+  }
   

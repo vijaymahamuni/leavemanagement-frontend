@@ -101,7 +101,6 @@ function ChatingApp(){
         users.push(doc.data());
       });
       // setUsers(users);
-      console.log("users list printed is",users)
 
     });
     return () => unsub();
@@ -265,15 +264,15 @@ const selectUser = async(user) => {
 let prevDate = null;  
 const [searchInput, setSearchInput] = useState('');
 const [searchResults, setSearchResults] = useState([]);
-const handleSearch = (query) => {
-  setSearchInput(query);
+// const handleSearch = (query) => {
+//   setSearchInput(query);
 
-  // Perform search logic (e.g., filter chatblock based on the query)
-  const results = chatblock.filter((item) =>
-    item.firstname.toLowerCase().includes(query.toLowerCase())
-  );
-  setSearchResults(results);
-};
+//   // Perform search logic (e.g., filter chatblock based on the query)
+ 
+//   const filteredData = query ?users.filter(item => item.newfirstname.toLowerCase().includes(query.toLowerCase())):users;
+//   setUsers(filteredData)
+// };
+  console.log("filter searchInput",searchInput)
 
 const [activeUser, setActiveUser] = useState(null);
 
@@ -296,6 +295,7 @@ useEffect(() => {
       console.log("combined two user and lastmeg colloection printed is",combinedData)
 
       setUsers(combinedData);
+      
     });
 
     return () => unsub2();
@@ -316,33 +316,7 @@ const mergeCollections = (collection1Data, collection2Data) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  return(
+return(
     <div className="home_container">
     <div className="users_container">
     <div className="leftside_heading">
@@ -354,12 +328,14 @@ const mergeCollections = (collection1Data, collection2Data) => {
       type="text"
       placeholder="Search or start new chat"
       value={searchInput}
-      onChange={(e) => handleSearch(e.target.value)}
+      onChange={(e) => setSearchInput(e.target.value)}
     />
               {/* <SearchIcon className="Search_icon"/> */}
             
           </div>
-    {users.map(user =><User 
+    {users.filter((item)=>{
+      return searchInput.toLowerCase()===''? item:item.newfirstname.toLowerCase().includes(searchInput)
+    }).map(user =><User 
     key={user.uid}
     user={user} 
     selectUser={selectUser} 

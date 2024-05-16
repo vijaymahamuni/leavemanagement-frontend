@@ -1,10 +1,18 @@
 .LeaveRequest_page{
     position: absolute;
     top: 126px;
-    padding: 152px 135px 0px 133px;
-    background-color: #c4f5ed;
-    left: 413px;
-   border-radius: 15px;
+    padding: 0px 0px 150px 0px;
+    background-color: white;
+    left: 340px;
+    border-radius: 5px;
+    width: 55%;
+
+}
+.form_styl{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 .loader_permission {
@@ -18,64 +26,64 @@
     height: 110px;
     animation: spinner 4s linear infinite;
   }
-.form-control{
+/* .form-control{
     position: relative;
     left: 10px;
-}
-.Emloyeeid_stl{
+} */
+/* .Emloyeeid_stl{
     position: relative;
     left: 295px;
     top: -62px;
 
-}
-.Email_stl{
+} */
+/* .Email_stl{
     position: relative;
     top: -42px;
-}
-.mobile_stl{
+} */
+/* .mobile_stl{
     position: relative;
     top: -103px;
     left: 15px;
-}
-.leave_style{
+} */
+/* .leave_style{
     position: relative;
     top: -117px;
     width: 234%;
     left: 15px;
-}
+} */
 .leaveDrop{
     
     width: 100%;
 
 }
-.fromday_stl{
+/* .fromday_stl{
     position: relative;
     top: -98px;
     left: 15px;
-}
-.Today_stl{
+} */
+/* .Today_stl{
     position: relative;
     top: -72px;
     left: 14px;
-}
-.LeaveForm_adjust{
+} */
+/* .LeaveForm_adjust{
     position: relative;
     left: -10px;
-}
-.commends_syl{
+} */
+/* .commends_syl{
     position: relative;
     top: -65px;
     width: 235%;
     left: 15px;
-}
+} */
 .Requestbtn{
-    position: relative;
+    /* position: relative;
     top: -23px;
-    left: 75px;
-    background-color: green;
+    left: 75px; */
+    background-color: #4a9aa9;
     border: none !important;
 }
-.heading_leave{
+/* .heading_leave{
   
     position: relative;
     top: -137px;
@@ -83,4 +91,4 @@
 
 
 
-}
+} */

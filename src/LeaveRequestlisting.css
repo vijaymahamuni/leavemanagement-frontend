@@ -1,30 +1,37 @@
 .Leavelisting{
     position: absolute;
-    top: 107px;
-    left: 148px;
-    padding: 200px 10px 10px 10px;
+    top: 130px;
+    left: 10%;
+    padding: 0px 0px 265px 0px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 5px;
+    width: 80%;
+
+}
+/* .leavelisting{
+    position: relative;
+    top: 35px;
+} */
+.permission_head{
+
+  margin-left: 35px;
+  color: white;
+
 }
 #addleave{
     position: absolute;
-    left: 78%;
-    top: 14px;
+    left: 83%;
+    top: 4px;
     background-color: green;
+    border: none;
 }
 .viewed{
     cursor: pointer;
 }
-.leavelisting{
-    position: relative;
-    top: -128px;
-}
+
 .leaveHeading{
-    position: absolute;
-    top: 17px;
-    left: 2%;
-    font-size: 24px;
-    font-weight: bold;
+    background-color:  #16b1cc;
+    padding: 10px;
 }
 .ActiveBtn{
     border-radius: 35px;
@@ -53,8 +60,15 @@
 } */
 .MuiTabs-root{
     position: absolute;
-    top: 12px;
-    left: 55%;
+    top: -4px;
+    left: 46%;
+}
+.MuiButtonBase-root {
+    color: black !important;
+
+}
+.css-1aquho2-MuiTabs-indicator{
+    background-color: white !important;
 }
 .page-item .active{
  
@@ -62,7 +76,7 @@
 }
 .pagination{
     position: absolute;
-    top: 83%;
+    top: 78%;
 }
 .Viewlink{
     text-decoration: none;
@@ -70,8 +84,9 @@
 }
 .permisson_filter{
     position: absolute;
-    top: 14px;
-    left: 71%;
+    top: 4px;
+    left: 76%;
+
 }
 .Leavepermission-allDrop{
     position: absolute;
@@ -173,4 +188,7 @@
     background-color: green;
     border: none;
 
+}
+.tab_pos{
+    position: absolute;
 }

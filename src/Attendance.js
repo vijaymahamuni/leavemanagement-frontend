@@ -23,6 +23,8 @@ import moment from 'moment';
 import { curveCardinal } from 'd3-shape';
 import { Navigate } from "react-router-dom";
 import { useNavigate ,useLocation} from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 const AttendanceChart = () => {
   const [Buffer,setBuffer]=useState(true);
   const [data, setData] = useState([]);
@@ -619,12 +621,24 @@ const Pending_KpiL3=(label)=>{
 
   navigate(`/user/permission/Requested`)
 }
+const back_tohome=()=>{
+  navigate(`/user/home`);
+}
 return (
   <div>
   {Buffer ?(<div animation="border"  className="loader"/>):(
     <div className="Attend">
-      {AllowAccess =='L4' ?(<></>):(<><div className="Leavesummary">
-        <h3 className="summaryHead">Leave Summary</h3>
+
+      {/* <div class="dashboard_head">
+      <ArrowBackIcon className="record_backicon" ></ArrowBackIcon>
+     
+      <p>LMS Dashboard</p> </div> */}
+      <div className="formfill_head">
+            <ArrowBackIcon className="record_backicon" onClick={back_tohome} ></ArrowBackIcon>
+            <h4 className="SignupHead">LMS Dashboard</h4></div>
+
+      {AllowAccess =='L4' ?(<></>):(<>
+
      {AllowAccess =='L3' ?(<>
     
 
@@ -714,10 +728,12 @@ return (
   </>):(<></>)  }   
      
    
-    </div></>)}
+   </>)}
       
-    
-     <h2 className="heading_chart">{summary}</h2>
+    <div>
+    <h2 className={AllowAccess =="L4" ?"lel4_heading":"heading_chart"}>{summary}</h2>
+
+
     {selectedCharttype =='BarChart' ?(
        <BarChart
        width={1000}
@@ -800,7 +816,7 @@ return (
 ):null}
 
 
-          
+</div>          
 
 {loading ?(<div animation="border"  className="loader_kpi"/>):(<div>
   {selecteduserwise==0 && selectedFile==0?( <Modal show={show} onHide={handleClose} animation={false}>
@@ -1000,10 +1016,12 @@ return (
 </div>
 <div>{select}</div>
 </div>)}
-<div className="Second_chart">
-  <div className="heading_dashboard"><h3>KPI Dashboard</h3></div>
-<div className="Yearly_kpi">
-  {selected_Dropdown ==2?null:(<div>
+{/* <div>
+<div className="kpi_align">
+  <div ><h3>KPI Dashboard</h3></div>
+  <div >
+  <div style={{display:"flex",justifyContent:"space-between"}}>
+  {selected_Dropdown ==2?null:(<div style={{marginLeft:"100px"}}>
     <select
       value={selected_kpiYear}
       onChange={e=> {
@@ -1022,8 +1040,7 @@ return (
   </select>
   </div>)}
 
-</div>
-<div className="WeeklyWise">
+<div style={{marginLeft:"35px"}}>
  <select
       value={typesof_dropdown}
       onChange={e=> {
@@ -1046,7 +1063,7 @@ return (
   </select>
  
 </div>
-<div className="monthly_kpi">
+<div style={{marginLeft:"35px"}} >
   {selected_Dropdown ==0 ?(<select
       value={MonthKpi}
       onChange={e=> {
@@ -1082,8 +1099,10 @@ return (
         />
 
      </div>):null}
-
+     </div>
     </div>
+  </div>
+
 <div className="kpidata_submit">
  <Button as="input" type="submit" value="Submit"  className="button_submit" onClick={Kpi_submit}/>{' '}
 </div>
@@ -1091,12 +1110,10 @@ return (
 <div className="Reset_Kpi">
  <Button as="input" type="submit" value="Reset"  className="reset_submit" onClick={Handle_resetKpi}/>{' '}
 </div>
-{/* <div >
- <Button as="input" type="submit" value="Reset"  className="reset_submit" onClick={handleReset}/>{' '}
-</div> */}
+
 
 </div>
-<div>
+<div style={{marginTop:"0px"}}>
 {loading ?(<div animation="border"  className="loader_kpi"/>):(<div>
   <div className="kpi-box">
   <div className="Title_style01"></div>
@@ -1113,7 +1130,6 @@ return (
   <p >{firstNames[2]}</p>
   </div>
 </div>
-
 
 <div className="kpi-2box">
 <div className="Title_style02"></div>
@@ -1149,6 +1165,8 @@ return (
 </div>)}
 
 </div>
+</div> */}
+
 </div>
 );
 };

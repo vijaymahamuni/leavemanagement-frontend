@@ -289,9 +289,9 @@ let permiss_tab=tab_label;
             <NavLink to="record" className={`nav-item ${activePage === 'record' ? 'active' : 'inactive'}`}>Users</NavLink>
             </div>&nbsp;&nbsp;&nbsp;&nbsp;</>):(<></>)} 
         
-          <div>
+          {/* <div>
           <NavLink to="summary"  className={`nav-item ${activePage === 'summary' ? 'active' : 'inactive'}`}>Summary</NavLink>
-            </div>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>&nbsp;&nbsp;&nbsp;&nbsp; */}
         
           <div>
             <NavLink to="attend" className={`nav-item ${activePage === 'attend' ? 'active' : 'inactive'}`}>Dashboard</NavLink>

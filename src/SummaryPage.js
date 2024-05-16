@@ -264,13 +264,16 @@ const useStyles = makeStyles({
     },
   });
 const classes = useStyles();
+console.log("Summarydata",Summarydata)
   return (
     <div>
     {Buffer ?(<div animation="border"  className="loader"/>):(   <div className="Summary_style">
-    <div className="report_heading"></div>
 		<ArrowBackIcon className="backIcon" onClick={Backbtn_Action}></ArrowBackIcon>
-        <h5 className="report_subhead">{ReportHead}</h5>
-        <div className="yearly_dropdown">
+    <div className="report_heading">
+    <h5 className="report_subhead">{ReportHead}</h5>
+    </div>
+    {/* <div>
+    <div className="yearly_dropdown">
     <select
       value={SummaryYear}
       onChange={e=> {
@@ -280,7 +283,7 @@ const classes = useStyles();
       const year = options.map(option => option.value);
       setSummaryYear(year);
   }}
-    >
+    >'
     {year_drop.map((option) => (
       <option key={option.value}>
         {option.value}
@@ -310,7 +313,13 @@ const classes = useStyles();
 </select></div>):(null)}
 
 </div>
-  <Button as="input" type="submit" value="Submit"  className={reportdata==null?"summaryYear_Selt":"userwiseYear_dropdown"} onClick={SummaryYearly_submit}/>
+<div>
+<Button as="input" type="submit" value="Submit"  className={reportdata==null?"summaryYear_Selt":"userwiseYear_dropdown"} onClick={SummaryYearly_submit}/>
+
+</div>
+    </div> */}
+
+
   <div className="tabledata" >
   <div id="container">
         <TableContainer component={Paper}  className={classes.tableContainer}>

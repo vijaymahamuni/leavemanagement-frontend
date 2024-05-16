@@ -35,9 +35,9 @@
   background-color: lightgreen;
 }
 .Daily_showtable{
-  position: absolute;
+  /* position: absolute;
   top: 355px;
-  left: 490px;
+  left: 435px; */
 
 
 }
@@ -62,11 +62,12 @@
   }
 }
 .Entry_heading{
-  position: absolute;
-  color: white;
+  /* position: absolute;
   top: -52px;
-  left: 267px;
+  left: 267px; */
   font-size: 17px;
+  color: white;
+
   font-weight: bold;
 }
 .css-1b7zacj-MuiTableCell-root{

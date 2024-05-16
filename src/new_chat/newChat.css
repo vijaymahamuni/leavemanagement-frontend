@@ -381,10 +381,7 @@
   padding: 0;
 }
 
-.message .dropdown-menu {
-  right: 0;
-  left: auto;
-}
+
 .chatRoom_loadingimg{
   position: relative;
   width: 100%;

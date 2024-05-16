@@ -165,9 +165,9 @@ const TimeButton = () => {
     </button>
     <div className="Daily_showtable">
 
-    <Typography variant="h6" className="Entry_heading">
+    {/* <Typography variant="h6" className="Entry_heading">
         Daily Attendance
-      </Typography>
+      </Typography> */}
 <TableContainer component={Paper} className="sampleliststl">
   <div className="fixTableHead">
 <Table sx={{ minWidth: 670 }} aria-label="customized table">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, props } from "react";
-import { Link, Outlet, useNavigate, useParams,useLocation } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams, useLocation } from "react-router-dom";
 import "./form.css";
 import axios, { Axios } from "axios";
 import picture from './images/Pro_profile.png';
@@ -7,11 +7,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db ,storage } from "./firebase";
+import { auth, db, storage } from "./firebase";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
 import { v4 as uuidv4 } from 'uuid';
 import firebase from 'firebase/compat/app';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import dhanushimg from './images/Vijay_YNM.jpg';
 
 function Form() {
@@ -41,12 +42,12 @@ function Form() {
 
   })
   const [bucket, setBucket] = React.useState(false)
-const location = useLocation();
-const newuseremail=values.email;
-const newPassword=values.password;
-const newfirstname=values.firstname;
-const mainformData=location.state;
-const generatedID = uuidv4();
+  const location = useLocation();
+  const newuseremail = values.email;
+  const newPassword = values.password;
+  const newfirstname = values.firstname;
+  const mainformData = location.state;
+  const generatedID = uuidv4();
 
 
 
@@ -58,7 +59,7 @@ const generatedID = uuidv4();
       return false
     }
     const newprofile = mainformData[0].profile;
-   
+
 
     await axios.put(`http://localhost:5000/userslist/${id}/${1}`, {
       id,
@@ -73,7 +74,7 @@ const generatedID = uuidv4();
       newprofile,
       selectedLevel,
       employeeId
-      
+
     }).then(res => {
 
       alert(res.data.msg);
@@ -91,7 +92,7 @@ const generatedID = uuidv4();
       event.preventDefault()
       const formData = new FormData();
       formData.append("selectedFile", selectedFile);
-     
+
       setSelectedFile(formData)
       try {
         const response = await axios({
@@ -101,20 +102,20 @@ const generatedID = uuidv4();
           headers: { 'Content-Type': "multipart/form-data" },
 
         });
-       
+
       } catch (error) {
-     
+
       }
     }
   }
-  const imgedit=async()=>{
+  const imgedit = async () => {
     const data = await axios.get(`http://localhost:5000/images`).then(res => {
-    const ticket_data=(res.data.data)
-  })
+      const ticket_data = (res.data.data)
+    })
 
   }
-let AllowAccess=sessionStorage.getItem('Access_Level')
-useEffect(() => {
+  let AllowAccess = sessionStorage.getItem('Access_Level')
+  useEffect(() => {
     setId(sessionStorage.getItem('id'))
     setFirstName(sessionStorage.getItem('firstname'))
     setLastName(sessionStorage.getItem('lastname'))
@@ -153,7 +154,7 @@ useEffect(() => {
       }
     }
   }, [])
-const [validations, setValidations] = React.useState({
+  const [validations, setValidations] = React.useState({
     firstname: '',
     lastname: '',
     email: '',
@@ -181,7 +182,7 @@ const [validations, setValidations] = React.useState({
       isValid = false
     }
     if (!lastname) {
-      validations.lastname = <div className="alignment_lastname">Lastname is required</div>
+      validations.lastname = <div >Lastname is required</div>
       isValid = false
     }
 
@@ -208,7 +209,7 @@ const [validations, setValidations] = React.useState({
       isValid = false
     }
     if (!password) {
-      validations.password =<div className="align_password">Password is required</div> 
+      validations.password = <div>Password is required</div>
       isValid = false
     }
     if (password && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(password)) {
@@ -220,7 +221,7 @@ const [validations, setValidations] = React.useState({
       isValid = false
     }
     if (!city) {
-      validations.city = <div className="align_city">City is required</div>
+      validations.city = <div >City is required</div>
       isValid = false
     }
     // if (!country) {
@@ -354,24 +355,24 @@ const [validations, setValidations] = React.useState({
     }
   }
   const handleChange = (e) => {
-   
+
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
-  
+
   }
   const [error, setError] = useState(false);
 
-  
+
 
   const history = useNavigate();
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateAll()
     if (!isValid) {
       return false
     }
     let message = ''
-    axios.post('http://localhost:5000/data', { values,country,selectedLevel,employeeId })
+    axios.post('http://localhost:5000/data', { values, country, selectedLevel, employeeId })
       .then(res => {
 
         alert(res.data.msg);
@@ -385,7 +386,7 @@ const [validations, setValidations] = React.useState({
           const formData = new FormData();
           formData.append("selectedFile", selectedFile);
 
-   
+
           setSelectedFile(formData)
           try {
             const response = axios({
@@ -395,16 +396,16 @@ const [validations, setValidations] = React.useState({
               headers: { 'Content-Type': "multipart/form-data" },
 
             });
-        
+
 
           } catch (error) {
-       
+
           }
           history("/login");
-    
+
         }
       })
-     try{
+    try {
       const db = firebase.firestore();
 
       const result = await createUserWithEmailAndPassword(
@@ -412,14 +413,14 @@ const [validations, setValidations] = React.useState({
         newuseremail,
         newPassword,
       );
-      console.log("Selected file printed is",dpimg)
+      console.log("Selected file printed is", dpimg)
       const imageRef = ref(storage, `userImages/${result.user.uid}/${dpimg.name}`);
       const metadata = {
-        contentType: 'image/jpeg', 
+        contentType: 'image/jpeg',
       };
-  
+
       await uploadBytes(imageRef, dpimg, metadata);
-  
+
       // Get the download URL of the uploaded image
       const imageUrl = await getDownloadURL(imageRef);
       console.log(imageUrl)
@@ -429,9 +430,9 @@ const [validations, setValidations] = React.useState({
         newuseremail,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
-        imageUrl:imageUrl
+        imageUrl: imageUrl
       });
-  }catch(err) {}
+    } catch (err) { }
   }
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [display, setDisplay] = React.useState([]);
@@ -440,7 +441,7 @@ const [validations, setValidations] = React.useState({
     event.preventDefault()
     const formData = new FormData();
     formData.append("selectedFile", selectedFile);
-  
+
     setSelectedFile(formData)
     try {
       const response = await axios({
@@ -450,12 +451,12 @@ const [validations, setValidations] = React.useState({
         headers: { 'Content-Type': "multipart/form-data" },
 
       });
-      
+
     } catch (error) {
 
     }
   }
-  const [dpimg,setDpimg]=useState("");
+  const [dpimg, setDpimg] = useState("");
   const handleFileupdate = (event) => {
 
     setSelectedFile(event.target.files[0]);
@@ -486,7 +487,7 @@ const [validations, setValidations] = React.useState({
   }
   sessionStorage.setItem('button', 'edit')
 
-  useEffect(()=>{
+  useEffect(() => {
 
   })
   const options = [
@@ -517,7 +518,7 @@ const [validations, setValidations] = React.useState({
     employeeLevels = [
       { label: 'Team Lead', value: 'L3' },
       { label: 'Employee', value: 'L4' },
-     
+
     ];
   }
   const [employeeId, setEmployeeId] = useState('');
@@ -544,22 +545,362 @@ const [validations, setValidations] = React.useState({
       setError(false);
     }
   };
-  
+
   return (
 
-    <div className="container">
-      
-      <div className={update =='new'?"signup-wrap":"form-wrap"}>
-      
-      <span className="update_border"></span>
+    <div className="container1">
+
+      <div className={update == 'new' ? "signup-wrap" : "form-wrap"}>
+
 
         <form className="Latest-regis" >
-          {(update == "new") ? (<h1 className="SignupHead">Signup</h1>) : (<div  className="formheading"><h3>Update Users</h3></div>)}
-        <div className="updatepage_edit"> 
-          <div classname="form-group">
-        
-            <label>
-              {(update == "new") ? (
+          {(update == "new") ? (<div className="formfill_head">
+            <ArrowBackIcon className="record_backicon" ></ArrowBackIcon>
+            <h4 className="SignupHead">Signup</h4></div>) : (
+            <div className="formfill_head">
+              <ArrowBackIcon className="record_backicon" ></ArrowBackIcon>
+              <h4 className="SignupHead">Update Users</h4></div>)}
+          <div className="updatepage_edit">
+            <div className="split_two">
+              <div>
+                <div >
+
+                  <label>
+                    {(update == "new") ? (
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField type="text" id="standard-basic" label="First Name" variant="standard" defaultValue={firstname}
+                          onChange={handleChange}
+                          onBlur={validateOne} />
+                        {/* <TextField id="outlined-basic"  variant="outlined"  label="First Name" value={firstname}
+                          onChange={handleChange}
+                          onBlur={validateOne}/> */}
+
+                      </Box>
+                    )
+                      : (
+                        <Box
+                          component="form"
+                          sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+
+
+                          <TextField
+                            label="First Name"
+                            id="standard-basic"
+                            value={firstname}
+                            variant="standard"
+                            onChange={event => setFirstName
+                              (event.target.value)}
+                            onBlur={validateOne}
+                          />
+
+                        </Box>)}
+                  </label>
+                  <div>{firstnameVal}</div>
+                </div>
+                <div>
+                  <label>
+                    {(update == "new") ? (
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField type="text" id="standard-basic" label="Last Name" variant="standard" value={lastname}
+                          onChange={handleChange}
+                          onBlur={validateOne} />
+                      </Box>
+                    )
+                      : (
+                        <Box
+                          component="form"
+                          sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+
+
+                          <TextField
+                            label="Last Name"
+                            id="standard-size-normal"
+                            defaultValue={lastname}
+                            variant="standard"
+                            onChange={event => setLastName
+                              (event.target.value)}
+                            onBlur={validateOne}
+                          />
+                        </Box>)}
+                  </label>
+                  <div className="lastName_valid">{lastnameVal}</div>
+                </div>
+
+
+
+
+
+                <div >
+
+                  <label>
+                    {(update == "new") ? (
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField type="text" id="standard-basic" label="Email" variant="standard" value={email}
+                          onChange={handleChange}
+                          onBlur={validateOne} />
+                      </Box>
+                    )
+                      : (
+                        <Box
+                          component="form"
+                          sx={{
+                            '& > :not(style)': { m: 1, width: '25ch' },
+                          }}
+                          noValidate
+                          autoComplete="off"
+                        >
+
+
+                          <TextField
+                            label="Email"
+                            id="standard-size-normal"
+                            defaultValue={email}
+                            variant="standard"
+                            onChange={event => email
+                              (event.target.value)}
+                            onBlur={validateOne}
+                          />
+                        </Box>)}
+                    <div >{msg}</div>
+
+                  </label>
+                  <div>{emailVal}</div>
+                </div>
+                <div >
+                  <label>
+                    {(update == "new") ? (
+
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField
+                          id="standard-basic"
+                          label="Password"
+                          variant="standard"
+                          type="password"
+                          name="password"
+                          value={password}
+                          onChange={handleChange}
+                          onBlur={validateOne}
+                        />
+                      </Box>
+
+                    ) : (<Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+
+                      <TextField id="standard-size-normal"
+                        label="Password" variant="standard"
+                        type="password"
+                        name="password"
+                        defaultValue={password}
+                        onChange={event => setpassword
+                          (event.target.value)}
+                        onBlur={validateOne}
+                      />
+                    </Box>
+                    )}
+                    <div>{passwordval}</div>
+                  </label>
+                </div>
+
+                <div >
+                  <label htmlFor="country" ></label>
+                  {(update == "new") ? (
+                    <Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField
+                        id="dropdown-stl"
+                        select
+                        label="Select an Country"
+                        variant="standard"
+                        value={country}
+                        onChange={event => setcountry
+                          (event.target.value)}
+                        onBlur={validateOne}
+
+                      >
+                        {options.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </Box>) : (
+                    <Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField
+                        id="dropdown-stl"
+                        select
+                        label="Select an Country"
+                        variant="standard"
+                        value={country}
+                        onChange={event => setcountry
+                          (event.target.value)}
+                        onBlur={validateOne}>
+                        {options.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </Box>
+                  )}
+
+                </div>
+                <div >
+                  <label>
+                    {(update == "new") ? (
+
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField id="standard-basic" label="City" variant="standard" type="text"
+                          name="city"
+                          value={city}
+                          onChange={handleChange}
+                          onBlur={validateOne} />
+                      </Box>) : (
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField id="standard-basic" label="City" variant="standard"
+                          type="text"
+                          name="city"
+                          defaultValue={city}
+                          onChange={event => setcity
+                            (event.target.value)}
+                        />
+                      </Box>
+                    )}
+
+                  </label>
+                  <div>{cityval}</div>
+                </div>
+              </div>
+              <div style={{ marginTop: "-24px" }}>
+                <div >
+                  <label ></label>
+                  {(update == "new") ? (
+                    <Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField
+                        id="dropdown-stl"
+                        select
+                        label="Select an Department"
+                        variant="standard"
+                        value={selectedLevel}
+                        onChange={event => setSelectedLevel
+                          (event.target.value)}
+                        onBlur={validateOne}
+
+                      >
+                        {employeeLevels.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </Box>
+
+
+                  ) : (
+                    <Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      <TextField
+                        id="dropdown-stl"
+                        select
+                        label="Select an Department"
+                        variant="standard"
+                        value={selectedLevel}
+                        onChange={event => setSelectedLevel
+                          (event.target.value)}
+                        onBlur={validateOne}
+                      >
+                        {employeeLevels.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.value}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    </Box>
+                  )}
+                </div>
                 <Box
                   component="form"
                   sx={{
@@ -568,571 +909,202 @@ const [validations, setValidations] = React.useState({
                   noValidate
                   autoComplete="off"
                 >
-                  {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                  <TextField id="fname-stl"  
-
-                    type="text"
-                    name="firstname"
-                    value={firstname}
-                    onChange={handleChange}
-                    onBlur={validateOne}
-                    placeholder="First Name"
-                    variant="standard"
-                    // className="form-control"
-                  />
-                  
                 </Box>
-              )
-                : (
-                  <Box
-                    component="form"
-                    sx={{
-                      '& > :not(style)': { m: 1, width: '25ch' },
-                    }}
-                    noValidate
-                    autoComplete="off"
-                  >
-                    {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+                <div >
+                  <label>
+                    {(update == "new") ? (
 
-                    <TextField id="standard-basic" label="First Name" variant="standard"
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField id="standard-basic" label="Employee ID" value={employeeId}
+                          variant="standard"
+                          onChange={handleEmployeeid}
+                          error={error}
+                          helperText={error ? 'Employee ID must be at least 5 characters long' : ''} />
 
-                      name="firstname"
-                      value={firstname}
-                      onChange={event => setFirstName
-                        (event.target.value)}
-                      onBlur={validateOne}
+                        {/* <TextField
+                      placeholder="Employee ID"
+                      value={employeeId}
+                      variant="standard"
+                      onChange={handleEmployeeid}
+                      error={error}
+                      helperText={error ? 'Employee ID must be at least 5 characters long' : ''}
+                    /> */}
+                      </Box>
 
-                    />
-                  </Box>)}
-            </label>
-            <div>{firstnameVal}</div>
-            
-          <div >
-            <label>
-              {(update == "new") ? (<div className="form-fname"><Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
 
-                <TextField id="standard-basic" placeholder="Last Name" variant="standard"
+                    ) : (<Box
+                      component="form"
+                      sx={{
+                        '& > :not(style)': { m: 1, width: '25ch' },
+                      }}
+                      noValidate
+                      autoComplete="off"
+                    >
+                      {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+                      <TextField
+                        label="Employee ID"
+                        value={employeeId}
+                        variant="standard"
+                        onChange={handleEmployeeid}
+                        error={error}
+                        helperText={error ? 'Employee ID must be at least 5 characters long' : ''}
+                      />
+                    </Box>
+                    )}
 
-                  type="text"
-                  name="lastname"
-                  value={lastname}
-                  onChange={handleChange}
-                  onBlur={validateOne}
-                  className="lastnameEdit"
-                />
-              </Box></div>) : (   <div className="form-lastname"><Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                <TextField id="standard-basic" label="Last Name" variant="standard"
-
-                  name="lastname"
-                  value={lastname}
-                  onChange={event => setLastName
-                    (event.target.value)}
-                  onBlur={validateOne}
-                  className="lastnameEdit"
-
-                />
-              </Box></div>)}
-            </label>
-            <div>{lastnameVal}</div>
-          </div>
-          </div>
-          <div className="Email_label">
-            <label>
-              {(update == "new") ? (
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                  <TextField id="standard-basic" placeholder="Email" variant="standard"
-
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                    onBlur={validateOne}
-                  />
-                </Box>
-              ) : (<Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                <TextField id="standard-basic" label="Email" variant="standard"
-
-                  type="email"
-                  name="email"
-                  value={email}
-                  onChange={event => email
-                    (event.target.value)}
-                  onBlur={validateOne}
-                
-
-                />
-              </Box>)}
-              <div >{msg}</div>
-            </label>
-            <div>{emailVal}</div>
-          </div>
-          <div className="password_label">
-            <label>
-              {(update == "new") ? (
-
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                  <TextField id="standard-basic" placeholder="Password" variant="standard"
-
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handleChange}
-                    onBlur={validateOne}
-                    className="mobileEdit"
-                  /></Box>
+                  </label>
+                  {/* <div>{employeeId}</div> */}
+                </div>
 
 
 
-              ) : (<Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                <TextField id="standard-basic" label="Password" variant="standard"
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={event => setpassword
-                    (event.target.value)}
-                  onBlur={validateOne}
-                  className="mobileEdit"
-                />
-              </Box>
-              )}
-              <div>{passwordval}</div>
-            </label>
-          </div>
-         
-          <div className="country_label">
-            <label htmlFor="country" ></label>
-            <br />
-            {(update == "new") ? (
-                <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField
-                  id="dropdown-stl"
-                  select
-                  label="Select an Country"
-                  variant="standard"
-                  value={country}
-                  onChange={event => setcountry
-                    (event.target.value)}
-                  onBlur={validateOne}
-           
->
-                  {options.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Box>
-          
-            
-          ) : (
-             <Box
-             component="form"
-             sx={{
-               '& > :not(style)': { m: 1, width: '25ch' },
-             }}
-             noValidate
-             autoComplete="off"
-           >
-             <TextField
-               id="dropdown-stl"
-               select
-               label="Select an Country"
-               variant="standard"
-               value={country}
-               onChange={event => setcountry
-                 (event.target.value)}
-               onBlur={validateOne}
-             
-
-              
-          
-             >
-               {options.map((option) => (
-                 <MenuItem key={option.value} value={option.value}>
-                   {option.label}
-                 </MenuItem>
-               ))}
-             </TextField>
-           </Box>
-       )}
-         
-          </div>
-          <div className="city_label" >
-            <label>
-              {(update == "new") ? (
-
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                  <TextField id="standard-basic" placeholder="City" variant="standard"
-                    type="text"
-                    name="city"
-                    value={city}
-                    onChange={handleChange}
-                    onBlur={validateOne}
-                    className="CityEdit"
-                  />
-                </Box>
+                <div >
+                  <label>
+                    {(update == "new") ? (
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <TextField
+                          id="standard-basic"
+                          label="Mobile no"
+                          variant="standard"
+                          type="tel"
+                          name="mobileno"
+                          value={mobileno}
+                          onChange={handleChange}
+                          onBlur={validateOne}
+                        />
 
 
-              ) : (<Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
+                      </Box>
 
-                <TextField id="standard-basic" label="City" variant="standard"
-                  type="text"
-                  name="city"
-                  value={city}
-                  onChange={event => setcity
-                    (event.target.value)}
-                  className="CityEdit"
-
-                />
-              </Box>
-              )}
-
-            </label>
-            <div>{cityval}</div>
-          </div>
-          <div className="SelectDept">
-            <label ></label>
-            <br />
-            {(update == "new") ? (
-                <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <TextField
-                  id="dropdown-stl"
-                  select
-                  label="Select an Department"
-                  variant="standard"
-                  value={selectedLevel}
-                  onChange={event => setSelectedLevel
-                    (event.target.value)}
-                  onBlur={validateOne}
-             
->
-                  {employeeLevels.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </Box>
-          
-            
-          ) : (
-             <Box
-             component="form"
-             sx={{
-               '& > :not(style)': { m: 1, width: '25ch' },
-             }}
-             noValidate
-             autoComplete="off"
-           >
-             <TextField
-               id="dropdown-stl"
-               select
-               label="Select an Department"
-               variant="standard"
-               value={selectedLevel}
-               onChange={event => setSelectedLevel
-                 (event.target.value)}
-               onBlur={validateOne}
-              
-
-              
-          
-             >
-               {employeeLevels.map((option) => (
-                 <MenuItem key={option.value} value={option.value}>
-                   {option.value}
-                 </MenuItem>
-               ))}
-             </TextField>
-           </Box>
-       )}
-       </div>
-          <br />
-          <Box
-             component="form"
-             sx={{
-               '& > :not(style)': { m: 1, width: '25ch' },
-             }}
-             noValidate
-             autoComplete="off"
-           >
-          </Box>
-     <div className="empId_label" >
-            <label>
-              {(update == "new") ? (
-
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                  <TextField
-      placeholder="Employee ID"
-      value={employeeId}
-      variant="standard"
-      onChange={handleEmployeeid}
-      error={error}
-      helperText={error ? 'Employee ID must be at least 5 characters long' : ''}
-    />
-                </Box>
+                    ) : (
+                      <Box
+                        component="form"
+                        sx={{
+                          '& > :not(style)': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
 
 
-              ) : (<Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-                <TextField
-      label="Employee ID"
-      value={employeeId}
-      variant="standard"
-      onChange={handleEmployeeid}
-      error={error}
-      helperText={error ? 'Employee ID must be at least 5 characters long' : ''}
-    />
-              </Box>
-              )}
-
-            </label>
-            <div>{cityval}</div>
-          </div>
-          
-         
-          
-          <br/>
-          <div className="mobile_label">
-            <label>
-              {(update == "new") ? (
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-
-                  <TextField  placeholder="Mobile no" variant="standard"
-
-                    type="tel"
-                    name="mobileno"
-                    value={mobileno}
-                    onChange={handleChange}
-                    onBlur={validateOne}
-                    className="align_mobileno"
-                    
-                  />
-                </Box>
-
-              ) : (
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-        
-
-                  <TextField id="standard-basic" label="Mobile no" variant="standard"
+                        <TextField id="standard-basic" label="Mobile no" variant="standard"
 
 
-                    type="tel"
-                    name="mobileno"
-                    value={mobileno}
-                    onChange={event => setmobileno
-                      (event.target.value)}
-                    onBlur={validateOne}
+                          type="tel"
+                          name="mobileno"
+                          defaultValue={mobileno}
+                          onChange={event => setmobileno
+                            (event.target.value)}
+                          onBlur={validateOne}
 
-                  />
-                </Box>
-              )}
-              <div>{mobilenoVal}</div>
-            </label>
-          </div>
-          <div className="gender-radio">
-            Gender
-            <br />
-            <label className="custom-radio">
-              {(update == "new") ? (<input
-                type="radio"
-                name="gender"
-                className="form-inputs"
-                value="Female"
-                onChange={handleChange}
-                onBlur={validateOne} />) : (<input
-                  type="radio"
-                  name="gender"
-                  className="form-inputs"
-                  value="Female"
-                  onChange={event => setgender
-                    (event.target.value)}
-                  onBlur={validateOne} />)}
-              <span>Female</span>
-              <span className="radio-dot"></span>
-            </label>&nbsp;&nbsp;
-            <label className="custom-radio">
-              {(update == "new") ? (
-                <input
-                  type="radio"
-                  name="gender"
-                  className="form-inputs"
-                  value="Male"
-                  onChange={handleChange}
-                  onBlur={validateOne}
-                ></input>) : (<input
-                  type="radio"
-                  name="gender"
-                  className="form-inputs"
-                  value="Male"
-                  onChange={event => setgender
-                    (event.target.value)}
-                  onBlur={validateOne}
-                ></input>)}
-           <span>Male</span>
-           <span className="radio-dot"></span>
-            </label>&nbsp;&nbsp;
-            <label className="custom-radio">
-              {(update == "new") ? (
-                <input
-                  type="radio"
-                  name="gender"
-                  className="form-inputs"
-                  value="others"
-                  onChange={handleChange}
-                  onBlur={validateOne}
-                ></input>) : (<input
-                  type="radio"
-                  name="gender"
-                  className="form-inputs"
-                  value="others"
-                  onChange={event => setgender
-                    (event.target.value)}
-                  onBlur={validateOne}
-                ></input>)}
-           <span>Others</span>
-           <span className="radio-dot"></span>
-            </label>
+                        />
+                      </Box>
+                    )}
+                    <div>{mobilenoVal}</div>
+                  </label>
+                </div>
+                <div className="gender-radio">
+                  Gender
+                  <br />
+                  <label className="custom-radio">
+                    {(update == "new") ? (<input
+                      type="radio"
+                      name="gender"
+                      className="form-inputs"
+                      value="Female"
+                      onChange={handleChange}
+                      onBlur={validateOne} />) : (<input
+                        type="radio"
+                        name="gender"
+                        className="form-inputs"
+                        value="Female"
+                        onChange={event => setgender
+                          (event.target.value)}
+                        onBlur={validateOne} />)}
+                    <span>Female</span>
+                    <span className="radio-dot"></span>
+                  </label>&nbsp;&nbsp;
+                  <label className="custom-radio">
+                    {(update == "new") ? (
+                      <input
+                        type="radio"
+                        name="gender"
+                        className="form-inputs"
+                        value="Male"
+                        onChange={handleChange}
+                        onBlur={validateOne}
+                      ></input>) : (<input
+                        type="radio"
+                        name="gender"
+                        className="form-inputs"
+                        value="Male"
+                        onChange={event => setgender
+                          (event.target.value)}
+                        onBlur={validateOne}
+                      ></input>)}
+                    <span>Male</span>
+                    <span className="radio-dot"></span>
+                  </label>&nbsp;&nbsp;
+                  <label className="custom-radio">
+                    {(update == "new") ? (
+                      <input
+                        type="radio"
+                        name="gender"
+                        className="form-inputs"
+                        value="others"
+                        onChange={handleChange}
+                        onBlur={validateOne}
+                      ></input>) : (<input
+                        type="radio"
+                        name="gender"
+                        className="form-inputs"
+                        value="others"
+                        onChange={event => setgender
+                          (event.target.value)}
+                        onBlur={validateOne}
+                      ></input>)}
+                    <span>Others</span>
+                    <span className="radio-dot"></span>
+                  </label>
+                </div>
+                <div>{genderVal}</div>
+
+                <label className="ProEdit" for="img">Upload Your Profile</label>
+
+                <div className="imgstl">
+                  {(update !== "new") ? (
+                    <div> <label className="picture">
+                      Change
+                      <input type="file" id="edit" onChange={handleFileupdate} />
+                    </label>
+                      <img src={selectedFile ? display : "http://localhost:5000/images/" + id} height="78px" width="78px" id="show_img" /></div>) : (<div> <label className="picture">
+                        {selectedFile ? 'Change' : 'Upload'}
+                        <input type="file" id="edit" onChange={handleFileupdate} />
+                      </label>
+                        <img src={selectedFile ? display : picture + id} height="78px" width="78px" id="show_img" /></div>)}
+
+
+                </div>
+
+              </div>
             </div>
-            <div>{genderVal}</div>
-            <br />
-           
-            <label className="ProEdit" for="img">Upload Your Profile</label>
-          
-            <div className="imgstl">
-            {(update !== "new") ? (
-              <div> <label className="picture">
-                Change
-                <input type="file" id="edit" onChange={handleFileupdate} />
-              </label>
-                <img src={selectedFile ? display : "http://localhost:5000/images/" + id} height="78px" width="78px" id="show_img" /></div>) : (<div> <label className="picture">
-                {selectedFile ? 'Change' : 'Upload'}
-                <input type="file" id="edit" onChange={handleFileupdate} />
-              </label>
-                <img src={selectedFile ? display : picture + id} height="78px" width="78px" id="show_img" /></div>)}
-        
-          <br />
-          <br />
-          <br />
-          </div> 
-</div>
-`
+
+          </div>
+          `
         </form>
         <Outlet />
         {(update !== "new") ? (<button type="submit" className="updatebtn" onClick={updateUser}>Update</button>) : (<button type="submit" className="registerbtn" onClick={handleSubmit}>Register</button>)}

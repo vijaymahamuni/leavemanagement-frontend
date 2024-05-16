@@ -1,12 +1,12 @@
 .tableStl {
-    font-size: 15px;
+    font-size: 10px;
     position: absolute;
-    margin-top: 4%;
-    padding: 16px 20px 181px 22px;
-    background-color: white;
-    left: 75px;
-    border-radius: 10px;
+    margin-top: 3%;
+    background-color: #EDF4F2;
+    left: 110px;
+    border-radius: 5px;
     overflow: hidden;
+    padding: 0px 0px 115px 0px;
 }
 
 .Profile_radius{
@@ -75,8 +75,8 @@
 .page-list {
     display: flex;
     position: absolute;
-    top: 412px;;
-    left: 68%;
+    top: 520px;;
+    left: 65%;
     justify-content: center;
 
 }
@@ -88,6 +88,7 @@
     border-radius: 30px;
     
 }
+
 .btnStatus{
     background-color: green;
 }
@@ -122,19 +123,19 @@
     border-radius: 50px !important;
 }
 .nav-pagination li {
-  display: flex;
-  float: left;
-  color: #f2f2f2;
-  background-color: #003152;
-  text-align: center;
-  padding: 14px 9px;
-  list-style: none;
-  font-size: 20px;
-  border-radius: 10px;
+    display: flex;
+    float: left;
+    color: #f2f2f2;
+    background-color: #003152;
+    text-align: center;
+    padding: 0px 10px;
+    list-style: none;
+    font-size: 21px;
+    border-radius: 25px;
 }
 .userliststl{
     position: relative;
-    top: 5px;
+    top: 25px;
 }
 .loading_style{
    
@@ -150,8 +151,8 @@
     border: 10px solid #EAF0F6;
     border-radius: 50%;
     border-top: 10px solid #5173ed;
-    width: 110px;
-    height: 110px;
+    width: 70px;
+    height: 70px;
     animation: spinner 4s linear infinite;
   }
   
@@ -165,10 +166,8 @@
     top: 8px;
 }  
 .listing_head{
-    
-    position: relative;
-    left: 41%;
-    top: -12px;
+    background-color:aquamarine;
+    padding: 10px;
 }
 .Exportbtn{
     position: absolute;
@@ -194,6 +193,28 @@
   }  
 .AddUsers{
     position: absolute;
-    top: 13px;
+    top: 5px;
     left: 76%;
 }  
+.Export_btn{
+    position: relative;
+    top: -60px;
+    border: none !important;
+}
+.userRcord_heading{
+    padding: 10px;
+    background-color: #4a9aa9;
+}
+.record_subhead{
+    margin-left: 35px;
+    color: white;
+}
+.record_backicon{
+    position: absolute;
+    top: 10px;
+    color: #4a9aa9 ;
+    left: 10px;
+    cursor: pointer;
+    background-color: #EDF4F2 ;
+    border-radius: 20px;
+}

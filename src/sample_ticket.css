@@ -1,19 +1,40 @@
 .tickets_head{
     position: absolute;
-    left: 16%;
-    top: 161%;
-    padding: 84px 115px 230px 111px;
+    top: 130px;
+    left: 10%;
+    padding: 0px 0px 265px 0px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
+    width: 80%;
 }
 
 #Add_button{
-    position: absolute;
+    /* position: absolute;
     left: 76%;
-    top: 20px;
+    top: 20px; */
     background-color: green;
+    border: none !important;
 
 }
+.tic_head{
+
+    margin-left: 35px;
+    color: white;
+  
+  }
+.ticket_backicon{
+    position: absolute;
+    top: 10px;
+    color: #4a9aa9 ;
+    left: 10px;
+    cursor: pointer;
+    background-color: #EDF4F2 ;
+    border-radius: 20px;
+}
+.ticketfill_head{
+    padding: 5px;
+    background-color: #4a9aa9;
+  }
 .MuiTabs-root {
     position: absolute;
     top: 12px;
@@ -70,9 +91,9 @@
     top: 24px;
   }
 .dropdown_icons{
-    position: absolute;
+    /* position: absolute;
     left: 593px;
-    top: 19px;
+    top: 19px; */
     cursor: pointer;
 }
 .container {
@@ -116,11 +137,11 @@
 }
 .Overall_dropdownshowed{
     position: absolute;
-    top: 82px;
+    top: 58px;
     background-color: #4a9aa9;
     padding: 35px 32px 74px 98px;
     width: 701px;
-    left: 110px;
+    left: 512px;
     border-radius: 5px;
 }
 .usersDrop{
@@ -143,4 +164,8 @@
     border: none;
     width: 155px;
   }
- 
+.addtic_btn{
+    display: flex;
+    margin-top: -38px;
+    justify-content: flex-end;
+} 

@@ -1,20 +1,29 @@
 .Ticket-Rise{
-    position: absolute;
+    /* position: absolute;
     top: 120%;
     left: 27%;
     padding: 55px 84px 56px 107px;
     background-color: #c4f5ed;
-    border-radius: 15px;
+    border-radius: 15px; */
+    position: absolute;
+    top: 126px;
+    padding: 0px 0px 50px 0px;
+    background-color: white;
+    left: 340px;
+    border-radius: 5px;
+    width: 55%;
 }
-.Ticket-heading{
+/* .Ticket-heading{
     position: absolute;
     top: 9px;
     left: 268px;
-}
+} */
 .Sending_ticketbtn{
-    position: relative;
+    /* position: relative;
     left: 42%;
-    top: 20px;
+    top: 20px; */
+    color: white !important;
+    background-color: #4a9aa9 !important;
 }
 .loader_ticketRaise {
     position: absolute;
@@ -27,3 +36,8 @@
     height: 110px;
     animation: spinner 4s linear infinite;
   }
+.send_ticketbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

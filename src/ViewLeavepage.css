@@ -1,33 +1,52 @@
 .leavetop {
     position: absolute;
-    top: 128%;
-    left: 22%;
-    background: #c4f5ed;
+    left: 50%;
+    transform: translate(-50%, 7%);
+    background: #EDF4F2;
     padding: 349px 0px 433px 778px;
     -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
 	-moz-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
 	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
-}
-.leavehead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;}
+/* .leavehead{
     position: relative;
       margin-top: -334px;
       margin-left: -501px;
       font-weight: bold;
       
-  }  
+  }   */
 .rejectbtn{
     position: absolute;
-    left: 48%;
-    top: 90%;
+    left: 53%;
+    top: 93%;
     background-color: #bd452d;
     border: none;
     font-weight: bold;
 
 }
+.btn-danger {
+    position: absolute;
+    top: 75%;
+    left: 60%;
+    border: none !important;
+    box-shadow: none !important;
+}
+.btn-light {
+    margin-right: 50px !important;
+
+}
+.form-control{
+    position: relative;
+    /* top: 0px; */
+    left: 0px !important;
+}
 .approvebtn{
     position: absolute;
-    left: 33%;
-    top: 90%;
+    left: 37%;
+    top: 93%;
     background-color: #29ba4b;
     border: none;
     font-weight: bold;
@@ -52,4 +71,12 @@
 .LevelHeading{
     font-weight: bold;
     margin-bottom: 17px;
+}
+.viewLeave_form{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #4a9aa9;
+    width: 100%;
+    padding: 5px;
 }

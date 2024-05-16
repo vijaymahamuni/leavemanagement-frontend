@@ -1,20 +1,29 @@
 .Summary_style{
-    position: absolute;
+    /* position: absolute;
     margin-top: 5%;
     padding: 10% 91% 25% 1%;
     background-color: aliceblue;
     margin-left: 26px;
-    overflow: auto;
+    overflow: auto; */
+    position: absolute;
+    background-color: aliceblue;
+    overflow: hidden;
+    width: 80%;
+    top: 161%;
+    left: 10%;
+    padding: 0px 0px 275px 0px;
 }
 .UserFilter{
     width: 8%;
-    position: fixed;
+    /* position: fixed;
     top: 196px;
-    left: 251px;
+    left: 251px; */
 }
 #container, #pinkDiv, #yellowDiv {
     overflow: auto;
-    position: absolute;
+    overflow: auto;
+    /* position: absolute; */
+    width: 92%;
   }
   
  
@@ -24,9 +33,9 @@
     background-color: #36ad5c !important;
     color: white;
     font-size: 14px;
-    position: fixed;
+    /* position: fixed;
     top: 196px;
-    left: 400px;
+    left: 400px; */
 }
 .userwiseYear_dropdown{
     height: 35px;
@@ -34,15 +43,15 @@
     background-color: #36ad5c !important;
     color: white;
     font-size: 14px;
-    position: fixed;
+    /* position: fixed;
     top: 196px;
-    left: 250px;
+    left: 250px; */
 }
 .yearly_dropdown{
     width: 8%;
-    position: fixed;
+    /* position: fixed;
     top: 196px;
-    left: 7%;
+    left: 7%; */
 
 }
 .tabledata{
@@ -88,4 +97,11 @@
 }
 .OffIcon{
     color: #f7f379;
+}
+.report_subhead{
+    margin-left: 35px;
+}
+.report_heading{
+    padding: 10px;
+    background-color: #16b1cc;
 }

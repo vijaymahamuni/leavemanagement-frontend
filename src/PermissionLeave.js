@@ -8,6 +8,8 @@ import moment from 'moment';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate ,useLocation, Navigate} from "react-router-dom";
@@ -303,13 +305,19 @@ let permiss_tab=tab_label;
 
   }
   const [Loading,setLoading]=useState(false);
+  const Backicon_permiss=()=>{
+    navigate(`/user/permission/Requested`);
+
+  }
   return (
     <div>
 {Loading ?(<div animation="border"  className="loader_permission"/>):(
 <div className="LeaveRequest_page">
   <div className='LeaveForm_adjust'>
-      <h4 className="heading_leave">Leave Request</h4>
-      <form >
+      <div className="ticketfill_head">
+            <ArrowBackIcon className="ticket_backicon" onClick={Backicon_permiss}></ArrowBackIcon>
+            <h4 className="tic_head">Leave Request</h4></div>
+      <form className='form_styl' >
       <div className="form-group">
         <div className='leave_style'>
           {request=='leave'?(<>
@@ -367,7 +375,7 @@ let permiss_tab=tab_label;
       </>)}
          
           </div>
-        </div>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;
         
         <div className="form-group">
         <div className='fromday_stl'>
@@ -490,7 +498,7 @@ let permiss_tab=tab_label;
          </>)} </>)}
         
         </div>
-        </div>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;
         <div className="form-group">
         <div className='Today_stl'>
           {request=='leave'?(<>
@@ -607,7 +615,7 @@ let permiss_tab=tab_label;
          </>)} </>)}
           
                   </div>
-        </div>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;
         <div className="form-group">
         <div className='commends_syl'> 
         {request=='leave'?(<>
@@ -657,7 +665,7 @@ let permiss_tab=tab_label;
            
               </div>
                  
-        </div>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        {request =='leave'?(<Button type="submit" className="Requestbtn" onClick={Requestleave}>Request Leave</Button>):(<Button type="submit" className="Requestbtn" onClick={Updatedleave}>Update Leave</Button>)} 
       </form>
      {CheckDays ?(<><SweetAlert error   onConfirm={hideReject}>Invalid EndDate —Please check it out!</SweetAlert></>):(<></>)} 
@@ -665,6 +673,7 @@ let permiss_tab=tab_label;
 
     </div>
     </div>)}
+  
     </div>
 
     
