@@ -1,20 +1,22 @@
-body{
+body {
   background-image: url('https://webdesignersbrisbaneblog.files.wordpress.com/2020/04/website-design-brisbane1.jpeg');
   background-size: cover;
 }
+
 .navbar {
   /* overflow: hidden; */
-  background-color:#003152;
+  background-color: #003152;
   top: 0px;
   padding: 0px;
   --bs-navbar-padding-y: -0.5rem !important;
 }
+
 /* .topnav a {
   text-decoration: none;
   color: white;
 } */
-.justnnow{
-  display:flex;
+.justnnow {
+  display: flex;
   position: absolute;
   justify-content: right;
   color: #f2f2f2;
@@ -22,20 +24,23 @@ body{
   text-align: center;
   font-size: 25px;
   margin-top: -45px;
-  margin-left:27%;
-  
+  margin-left: 27%;
+
 }
-.notification_batch{
+
+.notification_batch {
   position: relative;
   top: -49px;
   left: 54px;
 }
-.DropStyle{
+
+.DropStyle {
   position: absolute;
   margin-top: -1px;
   left: 96%;
 
 }
+
 .dropdown {
   position: initial !important;
 }
@@ -54,47 +59,58 @@ body{
 .home_link:hover {
   color: white;
 }
-.user_link:hover{
+
+.user_link:hover {
   color: white;
 }
+
 .dash_link:hover {
   color: white;
 }
-.nav_link:hover{
+
+.nav_link:hover {
   color: white;
 }
+
 .justnnow:hover {
   color: white;
 
 
 }
+
 .home_link {
   color: white;
   text-decoration: none;
 }
-.user_link{
+
+.user_link {
   color: white;
   text-decoration: none;
 }
+
 .dash_link {
   color: white;
   text-decoration: none;
 }
-.nav_link{
+
+.nav_link {
   color: white;
   text-decoration: none;
 }
+
 .justnnow {
   color: white;
   text-decoration: none;
 
 
 }
+
 .topnav li.active {
   background-color: #04AA6D;
   color: black;
 }
-.Tigma-logo{
+
+.Tigma-logo {
   position: relative;
   top: 5px;
   left: -10px;
@@ -102,11 +118,12 @@ body{
 
 }
 
-.imageSizeedit{
+.imageSizeedit {
   width: 41px;
   height: 42px;
   border-radius: 20px;
 }
+
 /* .nav_link{
    position: relative;
    transition: all 0.4s;
@@ -123,43 +140,45 @@ body{
   opacity: 0;
 
 } */
-.nav_link:hover::after
-
-{
+.nav_link:hover::after {
   opacity: 1;
 }
+
 .nav-item.active {
- padding :25px 14px 29px 11px;
- background-color: #4a9aa9 !important;
- color: white !important;
- text-decoration: none;
+  padding: 25px 14px 29px 11px;
+  background-color: #4a9aa9 !important;
+  color: white !important;
+  text-decoration: none;
 }
+
 .nav-item.inactive {
- text-decoration: none;
- color: white;
+  text-decoration: none;
+  color: white;
 }
+
 /* .topnav .nav_listing .active{ */
-  /* padding :25px 14px 29px 11px; */
-  /* background-color: #4a9aa9 !important; */
+/* padding :25px 14px 29px 11px; */
+/* background-color: #4a9aa9 !important; */
 /* color: white !important; */
- 
+
 /* } */
-.dropdown-menu{
+.dropdown-menu {
   /* position: absolute; */
   /* inset: -71px -61px auto auto !important; */
   background-color: #498fb8 !important;
   /* color: black !important; */
-  
+
   --bs-dropdown-link-hover-bg: #003152 !important;
-    --bs-dropdown-link-active-color: #fff;
+  --bs-dropdown-link-active-color: #fff;
 }
+
 .dropdown-item {
   display: block;
   width: 100%;
   padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
   clear: both;
   font-weight: 400;
-  color:white !important;
+  color: white !important;
   text-align: inherit;
   text-decoration: none;
   white-space: nowrap;
@@ -167,19 +186,28 @@ body{
   border: 0;
   border-radius: var(--bs-dropdown-item-border-radius, 0);
 }
-.btn-lg, .btn-group-lg > .btn{
+
+.btn-lg,
+.btn-group-lg>.btn {
   color: white !important;
   background-color: #498fb8 !important;
-} 
-.Box-notification{
-  padding: 99px 902px 14px 15px;
+}
+
+.Box-notification {
+  /* padding: 99px 902px 14px 15px;
   position: relative;
-  left: 63%;
+  left: 63%; */
+
+  position: relative;
+  left: 64%;
+  top: 82px;
+  width: 286px;
 
 }
+
 .dropdown-content {
   position: absolute;
-  
+
   left: 0;
   top: 10%;
   background-color: #f9f9f9;
@@ -188,16 +216,46 @@ body{
   padding: 10px;
   z-index: 1;
 }
-.Message-Btn{
+
+.Message-Btn {
   cursor: pointer;
 }
-.css-1howxi1-MuiTableCell-root{
+
+.css-1howxi1-MuiTableCell-root {
   color: white !important;
 }
-.Close-Icon{
+
+.Close-Icon {
   position: absolute;
-  top: 103px;
-  left: 434px;
+  top: 5px;
+  left: 242px;
+
   color: white;
   cursor: pointer;
+
+
+}
+
+/* YourComponent.css */
+
+/* Define scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 20px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

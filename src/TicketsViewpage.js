@@ -6,7 +6,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { useNavigate, useLocation } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import WordLimitedText from './WrodLimit_component/WordLimitedText';
 import { Link } from 'react-router-dom';
 function TicketsViewpage() {
   const { id } = useParams();
@@ -101,6 +101,7 @@ function TicketsViewpage() {
   const back_ticketview = () => {
     navigate(`/user/ticket/Own`)
   }
+  const wordLimit = 5; // Set your desired word limit here
 
   return (
     <div className='TicketViewpage'>
@@ -115,7 +116,10 @@ function TicketsViewpage() {
           <label className="label_01">To <span className='centerview1'> :</span>   <span className="value01">{item.firstname}</span></label><br /><br />
           <label className="label_01">CC <span className='centerview1'> :</span>   <span className="value01">{ccEmails}</span></label><br /><br />
           <label className="label_01">Subject <span className='centerview1'> :</span>   <span className="value01">{item.Subject}</span></label><br /><br />
-          <label className="label_01">Message <span className='centerview1'> :</span>   <span className="value01">{item.Message}</span></label><br /><br />
+          <label className="label_01">Message <span className='centerview1'> :</span>   <span className="value01">
+          <WordLimitedText text={item.Message} wordLimit={wordLimit} />
+
+          </span></label><br /><br />
 
         </div>
       })}

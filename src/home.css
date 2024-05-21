@@ -133,10 +133,10 @@
     font-size: 21px;
     border-radius: 25px;
 }
-.userliststl{
+/* .userliststl{
     position: relative;
     top: 25px;
-}
+} */
 .loading_style{
    
    color: white;
@@ -217,4 +217,7 @@
     cursor: pointer;
     background-color: #EDF4F2 ;
     border-radius: 20px;
+}
+.css-jsexje-MuiSwitch-thumb{
+    color: white !important;
 }

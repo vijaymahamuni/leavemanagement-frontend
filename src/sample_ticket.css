@@ -98,19 +98,20 @@
 }
 .container {
     position: absolute;
-    left: 317px;
-    top: 36px;
+    left: 165px;
+    top: 15%;
     color: white;
 }
 .btn-success{
     position: absolute;
-    left: 69%;
-    top: 25px;
+    left: 80%;
+    top: 23px;
+
 }
 .btn-danger{
     position: absolute;
-    left: 82%;
-    top: 24px;
+    top: 22%;
+    left: 64%;
 }
 #Users_headingticket{
     position: relative;

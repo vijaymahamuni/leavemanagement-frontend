@@ -77,11 +77,11 @@ let activeStatus='InActive';
     sessionStorage.removeItem("Email_id");
     sessionStorage.removeItem("proid");
 
-    api.put(`/chatActive_update/${Profileid}/${activeStatus}` )
-    await updateDoc(doc(db, "users", auth.currentUser.uid), {
-      isOnline: false,
-    });
-    await signOut(auth);
+    // api.put(`/chatActive_update/${Profileid}/${activeStatus}` )
+    // await updateDoc(doc(db, "users", auth.currentUser.uid), {
+    //   isOnline: false,
+    // });
+    // await signOut(auth);
   
     setLogout(true);
   }
@@ -337,7 +337,7 @@ let permiss_tab=tab_label;
               <Grid container spacing={2}>
                    
                     <Grid xs={12}>
-                       <TableContainer component={Paper}>
+                    <TableContainer component={Paper} sx={{ maxHeight: 400 }}> {/* Set a maximum height */}
                         <Table sx={{ minWidth: 250 }} size="small" aria-label="a dense table">
                             <TableHead>
                                 <TableRow>
@@ -345,7 +345,7 @@ let permiss_tab=tab_label;
 
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            <TableBody sx={{ overflowY: 'auto' }}> {/* Add scroll to overflow */}
                             {loadData.map((row) => (
                                <TableRow style={{ backgroundColor: row.status == "0" ? "#ccffcc" : "white"}}>
                                     <TableCell onClick={() => UpdateNotification(row.pageId,row.notification_type)} className="Message-Btn"> {row.message} </TableCell>

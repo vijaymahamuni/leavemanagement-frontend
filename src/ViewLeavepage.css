@@ -19,9 +19,9 @@
       
   }   */
 .rejectbtn{
-    position: absolute;
+    /* position: absolute;
     left: 53%;
-    top: 93%;
+    top: 93%; */
     background-color: #bd452d;
     border: none;
     font-weight: bold;
@@ -29,8 +29,7 @@
 }
 .btn-danger {
     position: absolute;
-    top: 75%;
-    left: 60%;
+    left: 68%;
     border: none !important;
     box-shadow: none !important;
 }
@@ -62,8 +61,8 @@
 }
 .confirmbtn{
     position: absolute;
-    left: 60%;
-    top: 90%;
+    left: 65%;
+    top: 93%;
     background-color: #b89d1a;
     border: none;
     font-weight: bold;

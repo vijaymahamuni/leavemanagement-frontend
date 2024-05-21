@@ -133,7 +133,7 @@ const handleUpdate=async(e)=>{
         }
         else if(res.status ==200){
           alert("Your password updated successfully")
-          navigate("/login")
+          navigate("/user/home")
         }
       }
 

@@ -271,11 +271,14 @@ function Home() {
     sessionStorage.removeItem('AccessLevel', AccessLevel)
     navigate("/user/form")
   }
+  const goback_home=()=>{
+    navigate(`/user/home`)
+  }
   return (
     <div>
       {isLoading ? (<div animation="border" className="loader" />) : (
         <div className="tableStl">
-          <ArrowBackIcon className="record_backicon" ></ArrowBackIcon>
+          <ArrowBackIcon className="record_backicon" onClick={goback_home}></ArrowBackIcon>
           <div className="userRcord_heading">
             <h5 className="record_subhead">
               Users Details</h5>

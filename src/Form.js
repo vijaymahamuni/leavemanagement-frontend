@@ -545,7 +545,9 @@ function Form() {
       setError(false);
     }
   };
-
+  const goback_home = () => {
+    navigate(`/user/record`)
+  }
   return (
 
     <div className="container1">
@@ -555,10 +557,10 @@ function Form() {
 
         <form className="Latest-regis" >
           {(update == "new") ? (<div className="formfill_head">
-            <ArrowBackIcon className="record_backicon" ></ArrowBackIcon>
-            <h4 className="SignupHead">Signup</h4></div>) : (
+            <ArrowBackIcon className="record_backicon" onClick={goback_home}></ArrowBackIcon>
+            <h4 className="SignupHead">Add User</h4></div>) : (
             <div className="formfill_head">
-              <ArrowBackIcon className="record_backicon" ></ArrowBackIcon>
+              <ArrowBackIcon className="record_backicon" onClick={goback_home} ></ArrowBackIcon>
               <h4 className="SignupHead">Update Users</h4></div>)}
           <div className="updatepage_edit">
             <div className="split_two">
@@ -567,6 +569,7 @@ function Form() {
 
                   <label>
                     {(update == "new") ? (
+
                       <Box
                         component="form"
                         sx={{
@@ -575,12 +578,20 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField type="text" id="standard-basic" label="First Name" variant="standard" defaultValue={firstname}
+                        {/* <TextField
+                          label="First Name"
+                          type="text"
+                          variant="standard"
+                          value={firstname}
                           onChange={handleChange}
-                          onBlur={validateOne} />
-                        {/* <TextField id="outlined-basic"  variant="outlined"  label="First Name" value={firstname}
+                          onBlur={validateOne}
+
+                          sx={{ mb: 2 }}
+                        /> */}
+                        <TextField id="outlined-basic" label="First Name" variant="outlined" value={firstname}
                           onChange={handleChange}
-                          onBlur={validateOne}/> */}
+                          onBlur={validateOne}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}/>
 
                       </Box>
                     )
@@ -593,18 +604,13 @@ function Form() {
                           noValidate
                           autoComplete="off"
                         >
-
-
                           <TextField
                             label="First Name"
-                            id="standard-basic"
-                            value={firstname}
                             variant="standard"
-                            onChange={event => setFirstName
-                              (event.target.value)}
-                            onBlur={validateOne}
+                            value={firstname}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            sx={{ mb: 2 }}
                           />
-
                         </Box>)}
                   </label>
                   <div>{firstnameVal}</div>
@@ -620,9 +626,10 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField type="text" id="standard-basic" label="Last Name" variant="standard" value={lastname}
+                        <TextField type="text" id="outlined-basic" label="Last Name" variant="outlined" value={lastname}
                           onChange={handleChange}
-                          onBlur={validateOne} />
+                          onBlur={validateOne}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }} />
                       </Box>
                     )
                       : (
@@ -638,8 +645,7 @@ function Form() {
 
                           <TextField
                             label="Last Name"
-                            id="standard-size-normal"
-                            defaultValue={lastname}
+                            value={lastname}
                             variant="standard"
                             onChange={event => setLastName
                               (event.target.value)}
@@ -666,9 +672,10 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField type="text" id="standard-basic" label="Email" variant="standard" value={email}
+                        <TextField type="text" id="outlined-basic" label="Email" variant="outlined" value={email}
                           onChange={handleChange}
-                          onBlur={validateOne} />
+                          onBlur={validateOne} 
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}/>
                       </Box>
                     )
                       : (
@@ -684,8 +691,7 @@ function Form() {
 
                           <TextField
                             label="Email"
-                            id="standard-size-normal"
-                            defaultValue={email}
+                            value={email}
                             variant="standard"
                             onChange={event => email
                               (event.target.value)}
@@ -710,14 +716,15 @@ function Form() {
                         autoComplete="off"
                       >
                         <TextField
-                          id="standard-basic"
+                          id="outlined-basic"
                           label="Password"
-                          variant="standard"
+                          variant="outlined"
                           type="password"
                           name="password"
                           value={password}
                           onChange={handleChange}
                           onBlur={validateOne}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
                         />
                       </Box>
 
@@ -730,11 +737,11 @@ function Form() {
                       autoComplete="off"
                     >
 
-                      <TextField id="standard-size-normal"
+                      <TextField 
                         label="Password" variant="standard"
                         type="password"
                         name="password"
-                        defaultValue={password}
+                        value={password}
                         onChange={event => setpassword
                           (event.target.value)}
                         onBlur={validateOne}
@@ -760,11 +767,12 @@ function Form() {
                         id="dropdown-stl"
                         select
                         label="Select an Country"
-                        variant="standard"
+                        variant="outlined"
                         value={country}
                         onChange={event => setcountry
                           (event.target.value)}
                         onBlur={validateOne}
+                        sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
 
                       >
                         {options.map((option) => (
@@ -813,11 +821,12 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField id="standard-basic" label="City" variant="standard" type="text"
+                        <TextField id="outlined-basic" label="City" variant="outlined" type="text"
                           name="city"
                           value={city}
                           onChange={handleChange}
-                          onBlur={validateOne} />
+                          onBlur={validateOne} 
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}/>
                       </Box>) : (
                       <Box
                         component="form"
@@ -827,10 +836,10 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField id="standard-basic" label="City" variant="standard"
+                        <TextField  label="City" variant="standard"
                           type="text"
                           name="city"
-                          defaultValue={city}
+                          value={city}
                           onChange={event => setcity
                             (event.target.value)}
                         />
@@ -857,12 +866,12 @@ function Form() {
                         id="dropdown-stl"
                         select
                         label="Select an Department"
-                        variant="standard"
+                        variant="outlined"
                         value={selectedLevel}
                         onChange={event => setSelectedLevel
                           (event.target.value)}
                         onBlur={validateOne}
-
+                        sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
                       >
                         {employeeLevels.map((option) => (
                           <MenuItem key={option.value} value={option.value}>
@@ -922,11 +931,13 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField id="standard-basic" label="Employee ID" value={employeeId}
-                          variant="standard"
+                        <TextField id="outlined-basic" label="Employee ID" value={employeeId}
+                          variant="outlined"
                           onChange={handleEmployeeid}
                           error={error}
-                          helperText={error ? 'Employee ID must be at least 5 characters long' : ''} />
+                          helperText={error ? 'Employee ID must be at least 5 characters long' : ''}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
+                          />
 
                         {/* <TextField
                       placeholder="Employee ID"
@@ -977,14 +988,16 @@ function Form() {
                         autoComplete="off"
                       >
                         <TextField
-                          id="standard-basic"
+                          id="outlined-basic"
                           label="Mobile no"
-                          variant="standard"
+                          variant="outlined"
                           type="tel"
                           name="mobileno"
                           value={mobileno}
                           onChange={handleChange}
                           onBlur={validateOne}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
+
                         />
 
 
@@ -1001,12 +1014,12 @@ function Form() {
                       >
 
 
-                        <TextField id="standard-basic" label="Mobile no" variant="standard"
+                        <TextField  label="Mobile no" variant="standard"
 
 
                           type="tel"
                           name="mobileno"
-                          defaultValue={mobileno}
+                          value={mobileno}
                           onChange={event => setmobileno
                             (event.target.value)}
                           onBlur={validateOne}

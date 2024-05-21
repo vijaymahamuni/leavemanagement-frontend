@@ -4,11 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import Userimg from "./images/UserIcon01.svg";
 import Dashimg from "./images/newDash.svg";
-import tickeimg from "./images/tickets_img.svg";
+import tickeimg from "./images/ticketDemonew.png";
 import AttendanceEntry from './AttendanceEntry';
 import DailyAttendance_table from "./DailyAttendance_table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import chatIcon from "./images/Chat_icon.png";
+import chatIcon from "./images/Chatdemo.png";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import BookOnlineIcon from '@mui/icons-material/BookOnline';
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import ChatIcon from '@mui/icons-material/Chat';
 import api from "./api/axios";
 
 function Success() {
@@ -37,7 +41,11 @@ function Success() {
   }
 
   const ticket_list = () => {
-    navigate(`/user/ticket`)
+    navigate(`/user/ticket/Own`)
+  }
+  const chat_list=()=>{
+    navigate(`/user/newChat`)
+
   }
   // let session_token='InActive';
   // const [isRunning, setIsRunning] = useState(true);
@@ -77,20 +85,23 @@ function Success() {
         <div className="Home_padding">
           <div className="centered-content">
             <h4 className="dash_head">Dashboard</h4>
-            <img src={Dashimg} className="dash_icon img-size" onClick={Dashboard} />
+            {/* <img src={Dashimg} className="dash_icon img-size" onClick={Dashboard} /> */}
+            <DashboardIcon style={{width:"100px",height:"60px"}} onClick={Dashboard}/>
           </div>
         </div>
         <div className="Home_padding">
           <div className="centered-content">
             <h4 >Tickets</h4>
-            <img src={tickeimg} className="ticket_icon img-size" onClick={ticket_list} />
+            {/* <img src={tickeimg} className="ticket_icon img-size"  /> */}
+            <ConfirmationNumberIcon style={{width:"100px",height:"60px"}} onClick={ticket_list}/>
           </div>
         </div>
         <div className="Home_padding">
           <div className="centered-content">
             <h4 >Chat</h4>
-            {/* <img src={chatIcon} className="ticket_icon img-size" onClick={ticket_list} />  */}
-            <FontAwesomeIcon icon="fas fa-comments" className="ticket_icon img-size" />          </div>
+            {/* <img src={chatIcon} className="chatIcon"  />  */}
+            <ChatIcon style={{width:"100px",height:"60px"}} onClick={chat_list}/>
+            </div>       
         </div>
 
       </div>

@@ -11,7 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Button from "react-bootstrap/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import WordLimitedText from '../WrodLimit_component/WordLimitedText';
 function Showpage() {
   const { id } = useParams();
 
@@ -279,7 +279,7 @@ function Showpage() {
   const hideAlert = () => {
     setShowAlert(false)
     setAlert(false)
-    navigate("/user/permission")
+    navigate("/user/permission/Requested")
   }
   const handleCancel = () => {
 
@@ -291,15 +291,18 @@ function Showpage() {
   const hideReject = () => {
     setrejectAlert(false)
 
-    navigate("/user/permission")
+    navigate("/user/permission/Requested")
   }
   const hideconfirm = () => {
     setokAlert(false)
-    navigate("/user/permission")
+    navigate("/user/permission/Requested")
   }
-  const back_permissionLeave=()=>{
-   navigate(`/user/permission/Requested`) 
+  const back_permissionLeave = () => {
+    navigate(`/user/permission/Requested`)
   }
+
+
+  const wordLimit = 5; // Set your desired word limit here
 
   return (
 
@@ -316,7 +319,9 @@ function Showpage() {
           <label className="label">Leave Type      <span className='centerview'> :</span>   <span className="value">{item.leave_type}</span></label><br /><br />
           <label className="label">Start Date         <span className='centerview'> :</span>   <span className="value">{item.firstday}</span></label><br /><br />
           <label className="label">End Date        <span className='centerview'> :</span>   <span className="value">{item.lastday}</span></label><br /><br />
-          <label className="label">Reason <span className='centerview'> :</span>   <span className="value">{item.comments}</span></label><br /><br />
+          <label className="label">Reason <span className='centerview'> :</span>   <span className="value"><WordLimitedText text={item.comments} wordLimit={wordLimit} />
+          </span></label><br /><br />
+
           <label className="label">Status <span className='centerview'> :</span>   <span className="value">{item.Active_status}</span></label><br /><br />
           <label className="label">TL Comments <span className='centerview'> :</span>   <span className="value">{item.Leadcmds}</span></label><br /><br />
           <label className="label">HR Comments <span className='centerview'> :</span>   <span className="value">{item.HRCmds}</span></label><br /><br />
