@@ -682,6 +682,8 @@ const AttendanceChart = () => {
               <div className="kpi-box11">
                 <div className="Title_style11"></div>
                 <div className="logo-container11">
+                <MarkChatUnreadIcon />
+
                   {/* <img src="https://blockchain-expo.com/northamerica/wp-content/uploads/2020/09/multiple-users-silhouette.png" className="logo_users11"></img> */}
                 </div>
 
@@ -696,6 +698,7 @@ const AttendanceChart = () => {
               <div className="kpi-box11">
                 <div className="Title_style11"></div>
                 <div className="logo-container11">
+                <MarkChatUnreadIcon />
 
                   {/* <img src="https://blockchain-expo.com/northamerica/wp-content/uploads/2020/09/multiple-users-silhouette.png" className="logo_users11"></img> */}
 

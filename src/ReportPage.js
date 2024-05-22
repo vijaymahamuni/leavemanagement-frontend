@@ -127,9 +127,7 @@ const data = [
     { Present: '', Absent: '', Off: '' }
   ];
   const tableColumns = reportData.map(row => row.head_month);
-const Sample_clickmon=()=>{
-	alert("hello vijay")
-}  
+  
 return (
         <div className="report_style">
 		

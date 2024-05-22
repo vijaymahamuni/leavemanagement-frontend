@@ -73,11 +73,11 @@
     background-color: #9d989e;
 }
 .page-list {
+    position: relative;
     display: flex;
-    position: absolute;
-    top: 520px;;
-    left: 65%;
-    justify-content: center;
+    align-content: end;
+    justify-content: end;
+    top: 50px;
 
 }
 .Page-Disable {

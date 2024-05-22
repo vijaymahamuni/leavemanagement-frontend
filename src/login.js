@@ -83,12 +83,21 @@ const Login = () => {
           sessionStorage.setItem('email', email)
           // alert('Successfully Login');
           api.put(`/chatActive_update/${Profileid}/${activeStatus}` )
+          Swal.fire({
+            title: 'Login Successfully',
+            text: 'Welcome to Tigma!',
+            icon: 'success'
+          })
 
           history("/user/home", {state:Data});
     
         }
         else{
-          alert("Incorrect email / password")
+          Swal.fire({
+            title: 'Error',
+            text: 'Incorrect email / password!',
+            icon: 'error'
+          });
         }
        
       })

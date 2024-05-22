@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel, Chip } from '@material-ui/core';
 import axios from 'axios';
 import "./TicketRise.css";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 function TicketRise() {
   const [to, setTo] = useState('');
   const [cc, setCC] = useState([]);
@@ -15,22 +14,19 @@ function TicketRise() {
   const [errors, setErrors] = useState({});
   const [confirmalert, setconfirmalert] = useState(false);
   const [recipients, setrecipients] = useState([]);
+  let Profileid = sessionStorage.getItem("proid", Profileid)
+  let ProfileEmailid = sessionStorage.getItem('Proemail', ProfileEmailid)
   const getUserdata = async (id, myArray) => {
     const data = await axios.get(`http://localhost:5000/ShowUsers_ticket`).then(res => {
-
-      if (recipient == '') {
+      if (recipient === '') {
         setrecipients(res.data.data)
       }
 
     })
   }
-
-
   useEffect(() => {
     getUserdata()
   })
-  let Profileid = sessionStorage.getItem("proid", Profileid)
-  let ProfileEmailid = sessionStorage.getItem('Proemail', ProfileEmailid)
   // const handleAddCC = () => {
   //   if (ccInput.trim() !== '') {
   //     setCC([...cc, ccInput]);
@@ -44,39 +40,32 @@ function TicketRise() {
   //     setCCInput('');
   //   }
   // };
-  const handleAddCC = () => {
-    if (ccInput.trim() !== '') {
-      const selectedRecipient = recipients.find(option => option.id === ccInput);
-      if (selectedRecipient) {
-        setCC([...cc, selectedRecipient.id]);
-        setCCInput('');
-      }
-    }
-  };
-
-
+  // const handleAddCC = () => {
+  //   if (ccInput.trim() !== '') {
+  //     const selectedRecipient = recipients.find(option => option.id === ccInput);
+  //     if (selectedRecipient) {
+  //       setCC([...cc, selectedRecipient.id]);
+  //       setCCInput('');
+  //     }
+  //   }
+  // };
   const handleRemoveCC = (ccItemId) => {
     setCC(cc.filter(item => item !== ccItemId));
     if (ccInput === ccItemId) {
       setCCInput('');
     }
   };
-
   const validateFields = () => {
     const errors = {};
-
     if (!to) {
       errors.to = 'To field is required.';
     }
-
     if (!subject) {
       errors.subject = 'Subject field is required.';
     }
-
     if (!message) {
       errors.message = 'Message field is required.';
     }
-
     setErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -86,35 +75,28 @@ function TicketRise() {
   const handleSendEmail = () => {
     if (validateFields()) {
       setLoading(true)
-
       const data = { to, cc, subject, message, Profileid, ProfileEmailid, Notification_type };
       axios.post('http://localhost:5000/ShowUsers_ticket', data)
         .then(response => {
-
-
-          if (response.data.status == '200') {
+          if (response.data.status === '200') {
             setLoading(false)
             setconfirmalert(true)
           }
         })
         .catch(error => {
-
           alert('Error sending email. Please check the console for details.');
         });
     }
   };
-
-
   const recipient = recipients;
-
-  const options = [
-    { value: 'Privilege', label: 'Privilege' },
-    { value: 'Sick', label: 'Sick' },
-    { value: 'Casual', label: 'Casual' },
-    { value: 'Maternity', label: 'Maternity' },
-    { value: 'Paternity', label: 'Paternity' },
-    { value: 'Work From Home', label: 'Work From Home' },
-  ];
+  // const options = [
+  //   { value: 'Privilege', label: 'Privilege' },
+  //   { value: 'Sick', label: 'Sick' },
+  //   { value: 'Casual', label: 'Casual' },
+  //   { value: 'Maternity', label: 'Maternity' },
+  //   { value: 'Paternity', label: 'Paternity' },
+  //   { value: 'Work From Home', label: 'Work From Home' },
+  // ];
   //   const handleCCInputChange = (e) => {
   //   const selectedCC = e.target.value;
   //   setCCInput(selectedCC);
@@ -130,8 +112,6 @@ function TicketRise() {
       setCC([...cc, selectedCCId]);
     }
   };
-
-
   const hideAlert = () => {
     setconfirmalert(false)
     navigate("/user/ticket/Own")
@@ -139,12 +119,9 @@ function TicketRise() {
   const [Loading, setLoading] = useState(false);
   const Backicon_ticket=()=>{
     navigate(`/user/ticket/Own`);
-
   }
   return (
     <div>{Loading ? (<div animation="border" className="loader_ticketRaise" />) : (
-
-
       <div className='Ticket-Rise'>
         <div >
           <div className="ticketfill_head">
@@ -166,7 +143,6 @@ function TicketRise() {
             </Select>
             {errors.to && <span style={{ color: 'red' }}>{errors.to}</span>}
           </FormControl>
-
           <div style={{ marginTop: '20px' }}>
             <FormControl fullWidth margin="normal">
               <InputLabel htmlFor="cc">CC</InputLabel>
@@ -200,7 +176,6 @@ function TicketRise() {
               })}
             </div>
           </div>
-
           <TextField
             label="Subject"
             value={subject}
@@ -219,7 +194,6 @@ function TicketRise() {
             margin="normal"
           />
           {errors.message && <span style={{ color: 'red' }}>{errors.message}</span>}
-
           &nbsp;&nbsp;&nbsp;&nbsp;
           <div className='send_ticketbtn'>
           <Button
@@ -230,19 +204,15 @@ function TicketRise() {
             Send
           </Button>
           </div>
-         
         </div>
-
         {confirmalert ? <SweetAlert
           success
           title="Successfully Sending Your Request!"
           onConfirm={hideAlert}
         >
-
         </SweetAlert> : <></>}
       </div>)}
     </div>
   );
 }
-
 export default TicketRise;

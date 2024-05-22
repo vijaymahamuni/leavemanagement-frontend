@@ -32,6 +32,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Norecord_component from "./Norecords_component";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Swal from 'sweetalert2';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -245,13 +246,35 @@ function LeaveRequestlisting() {
   const deleteAlert = () => {
     setdelAlert(true)
   }
-  function EmployeeDelete(id) {
-    alert("deleted")
+  const handleYes = (id) => {
     axios.delete(`http://localhost:5000/emplyeedel/${id}`)
-      .then(() => {
-        getUserdata();
-      })
-  }
+    .then(() => {
+      getUserdata();
+    })
+      .catch(error => {
+        console.error('There was an error deleting the user!', error);
+      });
+  };
+
+  const handleNo = () => {
+    console.log('User chose No');
+  };
+  function EmployeeDelete(id) {
+    Swal.fire({
+      title: 'Confirm',
+      text: 'Are you sure you want to delete this?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleYes(id);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        handleNo();
+      }
+    })
+ }
   const ViewLeave_page = (id) => {
     axios.get(`http://localhost:5000/viewleaveReqpage/${id}`).then(res => {
       var res_viewdata = res.data.data;

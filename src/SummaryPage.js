@@ -8,24 +8,19 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from "axios";
-import { styled } from '@mui/material/styles';
-import Button from 'react-bootstrap/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate ,useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import HighlightOffTwoToneIcon from '@mui/icons-material/HighlightOffTwoTone';
 import AccessTimeFilledTwoToneIcon from '@mui/icons-material/AccessTimeFilledTwoTone';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import "./SummaryPage.css";
 function SummaryPage() {
     const [Summarydata,setSummarydata]=useState([]);
     const [SummaryUser_Wise,SetSummaryUser_wise]=useState('');
-    const [showupdate_user,Setshowupdate_user]=useState('All');
     const [Summaryshowuser,SetSummaryshowuser]=useState('');
     const [Buffer,setBuffer]=useState(true);
     const location = useLocation();
     let  reportdata=location.state;
-    
     const[ReportHead,setReportHead]=useState('Yearly Reports for 2023');
     const year_drop=[
         {value:'2023'},
@@ -36,27 +31,9 @@ function SummaryPage() {
         {value:'2018'},
         {value:'2017'},
         {value:'2016'},
-   
-        	
-     
-        
-      
+ 
       ]
-    const user_filter=[
-        {value:'All',label:'1'},
-        {value:'Divya',label:'2'},
-        {value:'Gnana Prakash',label:'3'},
-        {value:'Jaya Praksh',label:'4'},
-        {value:'Kiruba',label:'5'},
-        {value:'Moorthi',label:'6'},
-        {value:'Muthu',label:'7'},
-        {value:'Nandhini',label:'8'},
-        {value:'Raja',label:'9'},
-        {value:'RathiPriya',label:'10'},
-        {value:'Vijay',label:'1'},
-        {value:'Vinu',label:'11'},
-        
-      ]  
+ 
     const [SummaryYear,setSummaryYear]=useState(['2023'])
     useEffect(()=>{
         if(reportdata ==null){
@@ -98,20 +75,17 @@ function SummaryPage() {
                     setBuffer(false)
                 })
             } catch (error) {
-           
-            
-              }
         
+              }
+    
         }
-       
-    })
-       
 
+    })
 
 const SummaryPage=(column)=>{
-       
+
         const demoMonth=column;
-     
+
     if(reportdata ==null){
         if(SummaryUser_Wise){
             try {
@@ -128,7 +102,7 @@ const SummaryPage=(column)=>{
                    
                   })
               } catch (error) {
-     
+    
                 }
         }
         else{
@@ -149,7 +123,7 @@ const SummaryPage=(column)=>{
                   
                 }
         }
-       
+
     }
     else{
         try {
@@ -171,8 +145,6 @@ const SummaryPage=(column)=>{
           
             }
     }
-       
-        
     }
     const data = [
    
@@ -182,13 +154,9 @@ const SummaryPage=(column)=>{
       ];
   const tableColumns = Summarydata.map(row => row.head_month);   
   const Backbtn_Action=()=>{
-   
 	setSummarydata([])
 	setReportHead('Yearly Reports for 2023')
     SetSummaryUser_wise(null)
-    Setshowupdate_user('All')
- 
-    
 }
 const SummaryYearly_submit=(column)=>{
     setBuffer(true)
@@ -201,12 +169,10 @@ const SummaryYearly_submit=(column)=>{
                 headers: { 'Content-Type': 'application/json'},
           
               }).then(res=> {
-           
-                
+
                 setSummarydata(res.data.data)
                 setBuffer(false)
-                  
-               
+          
               })
           } catch (error) {
          
@@ -224,8 +190,7 @@ const SummaryYearly_submit=(column)=>{
               }).then(res=> {
            
                 setSummarydata(res.data.data)
-                                
-               
+          
               })
           } catch (error) {
            
@@ -251,8 +216,6 @@ const SummaryYearly_submit=(column)=>{
            
           }
     }
-    
-
 }
 
 const useStyles = makeStyles({
@@ -318,8 +281,6 @@ console.log("Summarydata",Summarydata)
 
 </div>
     </div> */}
-
-
   <div className="tabledata" >
   <div id="container">
         <TableContainer component={Paper}  className={classes.tableContainer}>
@@ -369,10 +330,6 @@ console.log("Summarydata",Summarydata)
     </div>
     </div>
     </div>)}  
-
-
-
-
     </div>
   )
 }

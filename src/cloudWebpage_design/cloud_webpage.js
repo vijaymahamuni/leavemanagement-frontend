@@ -3,7 +3,6 @@ import './cloud_webpage.css';
 import img1 from './cloud_1img.jpeg';
 import img2 from './cloud_img2.jpeg'
 import Button from 'react-bootstrap/Button';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Cloud_webpage = () => {
   return (

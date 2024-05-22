@@ -13,6 +13,8 @@ import { v4 as uuidv4 } from 'uuid';
 import firebase from 'firebase/compat/app';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Swal from 'sweetalert2';
+
 import dhanushimg from './images/Vijay_YNM.jpg';
 
 function Form() {
@@ -34,7 +36,6 @@ function Form() {
     lastname: '',
     email: '',
     mobileno: '',
-    country: '',
     city: '',
     password: '',
     gender: '',
@@ -76,8 +77,11 @@ function Form() {
       employeeId
 
     }).then(res => {
-
-      alert(res.data.msg);
+      Swal.fire({
+        title: 'Success',
+        text: 'Successfully updated!',
+        icon: 'success'
+      });
       if (res.data.status == 100) {
         setmsg('Already exist email id!')
       }
@@ -168,7 +172,7 @@ function Form() {
   var val = sessionStorage.getItem('profile');
 
   const validateAll = () => {
-    const { firstname, lastname, email, mobileno, password, city, country, gender } = values
+    const { firstname, lastname, email, mobileno, password, city, gender } = values
     const validations = { firstname: '', lastname: '', email: '', mobileno: '', password: '', city: '', gender: '', setmsg: '' }
     let isValid = true
 
@@ -225,7 +229,7 @@ function Form() {
       isValid = false
     }
     // if (!country) {
-    //   validations.country = <div className="align_country">Country is required</div>
+    //   validations.country = <div>Country is required</div>
     //   isValid = false
     // }
     if (!isValid) {
@@ -304,24 +308,48 @@ function Form() {
     }
 
     if (value && name === 'firstname' && (value.length < 3 || value.length > 25)) {
-      alert("Name must contain between 3 and 25 characters");
+      Swal.fire({
+        title: 'Alert',
+        text: 'Name must contain between 3 and 25 characters',
+        icon: 'info'
+      });
     }
     if (value && name === 'lastname' && (value.length < 3 || value.length > 25)) {
-      alert('Name must contain 3to 20char');
+      Swal.fire({
+        title: 'Alert',
+        text: 'Name must contain 3to 20char',
+        icon: 'info'
+      });
     }
 
     if (value && name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-      alert('Email format must be as example@mail.com')
+      Swal.fire({
+        title: 'Alert',
+        text: 'Email format must be as example@mail.com',
+        icon: 'info'
+      });
     }
     if (value && name === 'mobileno' && !/^[0-9]{10}$/.test(value)) {
-      alert("invalid mobile number");
+      Swal.fire({
+        title: 'Alert',
+        text: 'invalid mobile number',
+        icon: 'info'
+      });
 
     }
     if (value && name === 'password' && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(value)) {
-      alert("invalid password and Weak");
+      Swal.fire({
+        title: 'Alert',
+        text: 'invalid password and Weak',
+        icon: 'info'
+      });
     }
     if (value && name === 'city' && !/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/.test(value)) {
-      alert("invalid city");
+      Swal.fire({
+        title: 'Alert',
+        text: 'invalid city',
+        icon: 'info'
+      });
     }
   }
   const validateOne = (e) => {
@@ -334,36 +362,59 @@ function Form() {
     }
 
     if (value && name === 'firstname' && (value.length < 3 || value.length > 25)) {
-      alert("Name must contain between 3 and 25 characters");
+      Swal.fire({
+        title: 'Alert',
+        text:'Name must contain between 3 and 25 characters',
+        icon: 'info'
+      });
     }
     if (value && name === 'lastname' && (value.length < 3 || value.length > 25)) {
-      alert('Name must contain 3to 20char');
+      Swal.fire({
+        title: 'Alert',
+        text:'Name must contain 3to 20char',
+        icon: 'info'
+      });
     }
 
     if (value && name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
-      alert('Email format must be as example@mail.com')
+      Swal.fire({
+        title: 'Alert',
+        text:'Email format must be as example@mail.com',
+        icon: 'info'
+      });
     }
     if (value && name === 'mobileno' && !/^[0-9]{10}$/.test(value)) {
-      alert("invalid mobile number");
+      Swal.fire({
+        title: 'Alert',
+        text:'invalid mobile number',
+        icon: 'info'
+      });
 
     }
     if (value && name === 'password' && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(value)) {
-      alert("invalid password and Weak");
+      Swal.fire({
+        title: 'Alert',
+        text:'invalid password and Weak',
+        icon: 'info'
+      });
     }
     if (value && name === 'city' && !/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/.test(value)) {
-      alert("invalid city");
+      Swal.fire({
+        title: 'Alert',
+        text:'invalid city',
+        icon: 'info'
+      });
     }
   }
   const handleChange = (e) => {
 
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
+    console.log("printed values ", values)
+
 
   }
   const [error, setError] = useState(false);
-
-
-
   const history = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -375,7 +426,12 @@ function Form() {
     axios.post('http://localhost:5000/data', { values, country, selectedLevel, employeeId })
       .then(res => {
 
-        alert(res.data.msg);
+        // alert(res.data.msg);
+        Swal.fire({
+          title: 'Success',
+          text: 'Successfully Added User!',
+          icon: 'success'
+        });
         if (res.data.status == 400) {
           setmsg('Already exist email id!')
         }
@@ -462,13 +518,13 @@ function Form() {
     setSelectedFile(event.target.files[0]);
     setDisplay(URL.createObjectURL(event.target.files[0]))
     setDpimg(event.target.files[0])
-    setValues({ profile: event.target.files[0].name, firstname: values.firstname, lastname: values.lastname, email: values.email, mobileno: values.mobileno, country: values.country, city: values.city, password: values.password, gender: values.gender },
+    setValues({ profile: event.target.files[0].name, firstname: values.firstname, lastname: values.lastname, email: values.email, mobileno: values.mobileno, city: values.city, password: values.password, gender: values.gender },
     )
   }
   const handleFileSelect = (event) => {
 
     setSelectedFile((event.target.files[0]));
-    setValues({ profile: event.target.files[0].name, firstname: values.firstname, lastname: values.lastname, email: values.email, mobileno: values.mobileno, country: values.country, city: values.city, password: values.password, gender: values.gender },
+    setValues({ profile: event.target.files[0].name, firstname: values.firstname, lastname: values.lastname, email: values.email, mobileno: values.mobileno, city: values.city, password: values.password, gender: values.gender },
     )
   }
   const {
@@ -478,7 +534,6 @@ function Form() {
     mobileno: mobilenoVal,
     password: passwordval,
     city: cityval,
-    country: countryval,
     gender: genderVal
   } = validations
   const navigate = useNavigate();
@@ -531,7 +586,6 @@ function Form() {
     password: false,
     city: false,
     gender: false,
-    country: false,
   });
 
   const handleEmployeeid = (event) => {
@@ -588,10 +642,19 @@ function Form() {
 
                           sx={{ mb: 2 }}
                         /> */}
-                        <TextField id="outlined-basic" label="First Name" variant="outlined" value={firstname}
+
+
+                        <TextField
+                          id="outlined-basic"
+                          label="First Name"
+                          variant="outlined"
+                          type="text"
+                          name="firstname"
+                          value={firstname}
                           onChange={handleChange}
                           onBlur={validateOne}
-                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}/>
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
+                        />
 
                       </Box>
                     )
@@ -607,6 +670,8 @@ function Form() {
                           <TextField
                             label="First Name"
                             variant="standard"
+                            name="firstname"
+
                             value={firstname}
                             onChange={(e) => setFirstName(e.target.value)}
                             sx={{ mb: 2 }}
@@ -626,7 +691,8 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField type="text" id="outlined-basic" label="Last Name" variant="outlined" value={lastname}
+                        <TextField type="text" id="outlined-basic" label="Last Name" name="lastname"
+                          variant="outlined" value={lastname}
                           onChange={handleChange}
                           onBlur={validateOne}
                           sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }} />
@@ -647,6 +713,8 @@ function Form() {
                             label="Last Name"
                             value={lastname}
                             variant="standard"
+                            name="lastname"
+
                             onChange={event => setLastName
                               (event.target.value)}
                             onBlur={validateOne}
@@ -672,10 +740,10 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField type="text" id="outlined-basic" label="Email" variant="outlined" value={email}
+                        <TextField type="text" id="outlined-basic" label="Email" name="email" variant="outlined" value={email}
                           onChange={handleChange}
-                          onBlur={validateOne} 
-                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}/>
+                          onBlur={validateOne}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }} />
                       </Box>
                     )
                       : (
@@ -692,6 +760,7 @@ function Form() {
                           <TextField
                             label="Email"
                             value={email}
+                            name="email"
                             variant="standard"
                             onChange={event => email
                               (event.target.value)}
@@ -737,7 +806,7 @@ function Form() {
                       autoComplete="off"
                     >
 
-                      <TextField 
+                      <TextField
                         label="Password" variant="standard"
                         type="password"
                         name="password"
@@ -769,6 +838,7 @@ function Form() {
                         label="Select an Country"
                         variant="outlined"
                         value={country}
+                        name="country"
                         onChange={event => setcountry
                           (event.target.value)}
                         onBlur={validateOne}
@@ -796,6 +866,7 @@ function Form() {
                         label="Select an Country"
                         variant="standard"
                         value={country}
+                        name="country"
                         onChange={event => setcountry
                           (event.target.value)}
                         onBlur={validateOne}>
@@ -825,8 +896,8 @@ function Form() {
                           name="city"
                           value={city}
                           onChange={handleChange}
-                          onBlur={validateOne} 
-                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}/>
+                          onBlur={validateOne}
+                          sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }} />
                       </Box>) : (
                       <Box
                         component="form"
@@ -836,7 +907,7 @@ function Form() {
                         noValidate
                         autoComplete="off"
                       >
-                        <TextField  label="City" variant="standard"
+                        <TextField label="City" variant="standard"
                           type="text"
                           name="city"
                           value={city}
@@ -937,7 +1008,7 @@ function Form() {
                           error={error}
                           helperText={error ? 'Employee ID must be at least 5 characters long' : ''}
                           sx={{ width: '300px', '& .MuiOutlinedInput-root': { height: '50px' } }}
-                          />
+                        />
 
                         {/* <TextField
                       placeholder="Employee ID"
@@ -1014,7 +1085,7 @@ function Form() {
                       >
 
 
-                        <TextField  label="Mobile no" variant="standard"
+                        <TextField label="Mobile no" variant="standard"
 
 
                           type="tel"

@@ -9,6 +9,7 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Swal from 'sweetalert2';
 
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -125,7 +126,11 @@ const Requestleave = (e) => {
     }
     else{
       if(Comments &&leaveType  ==''){
-        alert('Please fill this input field')
+        Swal.fire({
+          title: 'Alert',
+          text:'Please fill this input field',
+          icon: 'info'
+        });
       }
       else{
         setCheckdays(true)
@@ -218,10 +223,18 @@ let permiss_tab=tab_label;
     const diffInYears = duration.asYears();
 
     if(nxtleavetype ==''){
-      alert('Please Fill input field')
+      Swal.fire({
+        title: 'Alert',
+        text: 'Please Fill input field',
+        icon: 'info'
+      });
     }
     if(reason ==''){
-      alert('Please Fill input field')
+      Swal.fire({
+        title: 'Alert',
+        text: 'Please Fill input field',
+        icon: 'info'
+      });
     }
     if(diffInDays >=0){
       try {

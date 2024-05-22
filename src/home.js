@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useNavigate, useLocation } from "react-router-dom";
 import "./home.css";
+import Swal from 'sweetalert2';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
@@ -120,14 +121,37 @@ function Home() {
     })
     navigate("/form")
   }
-  function userDel(id) {
-    alert("deleted")
+  const handleYes = (id) => {
     axios.delete(`http://localhost:5000/usersdel/${id}`)
       .then(() => {
         getUserdata();
       })
-  }
+      .catch(error => {
+        console.error('There was an error deleting the user!', error);
+      });
+  };
 
+
+
+  const handleNo = () => {
+    console.log("user choice is no")
+  };
+  const userDel = (id) => {
+    Swal.fire({
+      title: 'Confirm',
+      text: 'Are you sure you want to delete this user?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleYes(id);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        handleNo();
+      }
+    });
+  };
   const navigate = useNavigate();
   function handleEdit({ id, firstname, lastname, email, mobileno, country, city, password, gender, employeeId, AccessLevel, update, profile }) {
     sessionStorage.setItem('id', id)
