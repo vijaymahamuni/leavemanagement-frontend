@@ -32,10 +32,9 @@
 }
 .btn-danger {
     position: absolute;
-    left: 61%;
+    left: 68%;
     border: none !important;
     box-shadow: none !important;
-    top: 200px;
 }
 .btn-light {
     margin-right: 50px !important;
@@ -82,13 +81,4 @@
     background-color: #4a9aa9;
     width: 100%;
     padding: 5px;
-}
-.ApproveBts{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: absolute;
-    top: 92%;
-    left: 250px;
-
 }

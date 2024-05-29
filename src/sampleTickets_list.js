@@ -414,10 +414,10 @@ export default function SampleTickets_list({ updateData }) {
 
 
 
-              <button className="btn btn-success mt-3" onClick={Submit_UsersDrop}>
+              <button className="tic_submit" onClick={Submit_UsersDrop}>
                 Submit
               </button>
-              <button className="btn btn-danger mt-3" onClick={handleResetFirstRow}>
+              <button className="tic_rest" onClick={handleResetFirstRow}>
                 Reset
               </button>
               {/* <button className="btn btn-danger mt-3" onClick={toggleDropdowns}>

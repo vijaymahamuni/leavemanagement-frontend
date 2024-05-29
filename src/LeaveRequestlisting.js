@@ -634,7 +634,7 @@ function LeaveRequestlisting() {
               <Button className="submit_perfilter" onClick={Submit_permissionfilter}>
                 Submit
               </Button>
-              <Button className="btn btn-danger mt-3" onClick={handleReset_filter}  >
+              <Button className="reset_perfil" onClick={handleReset_filter}  >
                 Reset
               </Button>
 

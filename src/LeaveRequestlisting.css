@@ -104,6 +104,13 @@
 
 
 }
+.reset_perfil{
+    position: absolute;
+    left: 67%;
+    top: 40px;
+    background-color: rgb(240, 77, 41);
+    border: none;
+}
 .permission-Usersdrop{
     position: absolute;
     top: 0px;

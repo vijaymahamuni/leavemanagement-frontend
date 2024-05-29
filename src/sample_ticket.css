@@ -102,16 +102,25 @@
     top: 15%;
     color: white;
 }
-.btn-success{
+.tic_submit{
     position: absolute;
-    left: 80%;
-    top: 23px;
+    left: 78%;
+    top: 42px;
+    padding: 6px;
+    border-radius: 7px;
+    background-color: green;
+    color: white;
 
 }
-.btn-danger{
+.tic_rest{
     position: absolute;
-    top: 22%;
-    left: 64%;
+    top: 38%;
+    left: 65%;
+    padding: 6px;
+    border-radius: 7px;
+    background-color: rgb(240, 77, 41);
+    color: white;
+    width: 65px;
 }
 #Users_headingticket{
     position: relative;

@@ -12,6 +12,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import Button from "react-bootstrap/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import WordLimitedText from '../WrodLimit_component/WordLimitedText';
+
 function Showpage() {
   const { id } = useParams();
 
@@ -511,12 +512,8 @@ function Showpage() {
               <div className='LevelHeading'>Head Comments:</div>
             </SweetAlert>
           )}</>)}
-          <div className='ApproveBts'>
-            <Button type='button' className='approvebtn' onClick={handleclickApprove}>Approve</Button>
-            <Button type='button' className='rejectbtn' onClick={handleButtonClick}>Reject</Button>
-          </div>
+         
 
-          {AllowAccess == 'L2' ? (<><Button type='button' className='confirmbtn' onClick={handlecheckL1}>Pass to L1</Button></>) : (<></>)}
         </>
       ) : (<></>)}
 
@@ -542,7 +539,12 @@ function Showpage() {
 
       </SweetAlert></>) : (<></>)}
 
+      <div className='ApproveBts'>
+            <Button type='button'  onClick={handleclickApprove} style={{backgroundColor:"green",border:"none"}}>Approve</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <Button type='button'  onClick={handleButtonClick} style={{backgroundColor:"rgb(240, 77, 41)",border:"none"}}>Reject</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+            {AllowAccess == 'L2' ? (<><Button type='button'  onClick={handlecheckL1} style={{backgroundColor:"#FEDF00",border:"none"}}>Pass to L1</Button></>) : (<></>)}
 
+      </div>
     </div>
   )
 }

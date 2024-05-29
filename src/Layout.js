@@ -77,11 +77,11 @@ let activeStatus='InActive';
     sessionStorage.removeItem("Email_id");
     sessionStorage.removeItem("proid");
 
-    // api.put(`/chatActive_update/${Profileid}/${activeStatus}` )
-    // await updateDoc(doc(db, "users", auth.currentUser.uid), {
-    //   isOnline: false,
-    // });
-    // await signOut(auth);
+    api.put(`/chatActive_update/${Profileid}/${activeStatus}` )
+    await updateDoc(doc(db, "users", auth.currentUser.uid), {
+      isOnline: false,
+    });
+    await signOut(auth);
   
     setLogout(true);
   }

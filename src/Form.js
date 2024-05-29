@@ -86,7 +86,7 @@ function Form() {
         setmsg('Already exist email id!')
       }
       if (res.data.status == 200) {
-        history("/user/record");
+        navigate("/user/record");
 
       }
     }
@@ -410,7 +410,6 @@ function Form() {
 
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
-    console.log("printed values ", values)
 
 
   }
@@ -418,78 +417,74 @@ function Form() {
   const history = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isValid = validateAll()
+    const isValid = validateAll();
+  
     if (!isValid) {
-      return false
+      return false;
     }
-    let message = ''
-    axios.post('http://localhost:5000/data', { values, country, selectedLevel, employeeId })
-      .then(res => {
-
-        // alert(res.data.msg);
+  
+    try {
+      // First API call to post user data
+      const res = await axios.post('http://localhost:5000/data', {
+        values,
+        country,
+        selectedLevel,
+        employeeId
+      });
+  
+      if (res.data.status === 400) {
+        setmsg('Already exist email id!');
+      } else {
+        setmsg('');
+      }
+  
+      if (res.data.status === 200) {
         Swal.fire({
           title: 'Success',
           text: 'Successfully Added User!',
           icon: 'success'
         });
-        if (res.data.status == 400) {
-          setmsg('Already exist email id!')
-        }
-        else {
-          setmsg('')
-        }
-        if (res.data.status == 200) {
-          const formData = new FormData();
-          formData.append("selectedFile", selectedFile);
-
-
-          setSelectedFile(formData)
-          try {
-            const response = axios({
-              method: "post",
-              url: `http://localhost:5000/photo`,
-              data: { 'file': selectedFile },
-              headers: { 'Content-Type': "multipart/form-data" },
-
-            });
-
-
-          } catch (error) {
-
-          }
-          history("/login");
-
-        }
-      })
+  
+        const formData = new FormData();
+        formData.append("selectedFile", selectedFile);
+  
+        // Second API call to upload the file
+        await axios.post('http://localhost:5000/photo', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+  
+      }
+    } catch (error) {
+      console.error("Error in form submission:", error.message);
+    }
+  
     try {
-      const db = firebase.firestore();
-
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        newuseremail,
-        newPassword,
-      );
-      console.log("Selected file printed is", dpimg)
-      const imageRef = ref(storage, `userImages/${result.user.uid}/${dpimg.name}`);
-      const metadata = {
-        contentType: 'image/jpeg',
-      };
-
-      await uploadBytes(imageRef, dpimg, metadata);
-
-      // Get the download URL of the uploaded image
-      const imageUrl = await getDownloadURL(imageRef);
-      console.log(imageUrl)
+      // Create user with email and password
+      const result = await createUserWithEmailAndPassword(auth, newuseremail, newPassword);
+  
+      // Upload profile image
+      const imgRef = ref(storage, `files/${result.user.uid}`);
+      await uploadBytes(imgRef, dpimg);
+  
+      // Get the download URL
+      const downloadURL = await getDownloadURL(imgRef);
+  
+      // Save the user data including the image URL to Firestore
       await setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         newfirstname,
         newuseremail,
         createdAt: Timestamp.fromDate(new Date()),
         isOnline: true,
-        imageUrl: imageUrl
+        imageUrl: downloadURL
       });
-    } catch (err) { }
-  }
+      navigate("/user/record");
+
+    } catch (error) {
+      console.error("Error uploading image and saving URL:", error.message);
+    }
+  };
+  
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [display, setDisplay] = React.useState([]);
 
@@ -762,7 +757,7 @@ function Form() {
                             value={email}
                             name="email"
                             variant="standard"
-                            onChange={event => email
+                            onChange={event => setemail
                               (event.target.value)}
                             onBlur={validateOne}
                           />
