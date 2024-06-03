@@ -23,6 +23,7 @@ import Tigmalog from "./TigmaVj.jpg";
 import DotButton from "./DotButton ";
 import { db, auth, storage } from "../firebase";
 import Message from "./Message";
+import CancelIcon from '@mui/icons-material/Cancel';
 import {
   collection,
   query,
@@ -34,7 +35,9 @@ import {
   setDoc,
   doc,
   getDoc,
+  limit,
   updateDoc,
+  getDocs,
 } from "firebase/firestore";
 import Attachment from "./Attachment";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
@@ -44,29 +47,35 @@ import MessageForm from "./MessageForm";
 function ChatingApp() {
   let Profileid = sessionStorage.getItem("proid", Profileid)
   const generatedID = uuidv4();
-  var ChatViewid = Profileid;
-  // let tosend_userid='10';
-
-  var Docu_ChatViewid;
-
-  const [message, setmessage] = useState([])
   const [text, setText] = useState('');
-  const [chatBlocklist, setChatblocklist] = useState([])
   const timestamp = firebase.firestore.Timestamp.now();
   const [chatblock, setChatblock] = useState([]);
   const [ticketChatList, setTicketChatList] = useState([]);
-  const [sendTo_userid, setsendTo_userid] = useState('');
-  const [default_loading, setdefault_loading] = useState(false);
-  const [now_activeuser, setNow_activeuser] = useState([]);
+  const [default_loading, setDefaultLoading] = useState(false);
   const [msgs, setMsgs] = useState([]);
-
+  const [display, setDisplay] = React.useState([]);
+  const [showSeltimg, setShowSeltimg] = useState(false);
+  const [existingConversations, setExistingConversations] = useState([]);
+  const [chatbox_users, setNewUserChatID] = useState(null);
+  const [isActive, setIsActive] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [chatuser_name, setChatUserName] = useState(Profilename);
+  const [chat, setChat] = useState('');
+  const [curtactUser, setCurTactUser] = useState();
+  const [img, setImg] = useState("");
+  const [isOnline, setIsOnline] = useState();
+  const [searchInput, setSearchInput] = useState('');
+  const [activeUser, setActiveUser] = useState();
+  const [initialOrder, setInitialOrder] = useState([]);
+  const [updateData, setUpdateData] = useState([]);
+  const [curSelectuser, setCurSelectUser] = useState(null);
   useEffect(() => {
     // setsendTo_userid(tosend_userid)
-    let activeStatus = 'Active';
     let currentlyActive_user = sessionStorage.getItem('proid')
     axios.get(`http://localhost:5000/Chating_employeelist`)
       .then((res) => {
         const ticketChatList = res.data.data;
+        
 
 
         setTicketChatList(ticketChatList);
@@ -83,12 +92,8 @@ function ChatingApp() {
     }
   }, [ticketChatList]);
 
-  const [existingConversations, setExistingConversations] = useState([]);
-  const [newUserChatID, setNewUserChatID] = useState(null);
-  const [isActive, setIsActive] = useState(false);
-  const [users, setUsers] = useState([]);
-  // const user1 = auth.currentUser.uid;
 
+  // const user1 = auth.currentUser.uid;
   useEffect(() => {
     const usersRef = collection(db, "users");
     const q = query(usersRef, orderBy("createdAt", "desc"));
@@ -101,44 +106,59 @@ function ChatingApp() {
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-      // setUsers(users);
+      setActiveUser(users);
+      console.log("setActiveUser", users)
+      setUpdateData(users)
 
     });
     return () => unsub();
   }, []);
+
   const sendMessage = async (e) => {
     e.preventDefault();
+    setShowSeltimg(false); // Example action: removing the image
+
     const user2 = chat.uid;
     const user1 = auth.currentUser.uid;
+    let lastmsg_img = 'photo';
 
+    // Determine the chat ID based on user IDs
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    console.log("Selecting user", id);
 
-    // ----Images Upload ChatMessages----
+    // Initialize upurl to an empty string
+    let upurl = "";
 
-    let upurl = ""; // Initialize upurl to an empty string
-
+    // Check if an image is selected for upload
     if (img) {
       const imgRef = ref(storage, `images/${new Date().getTime()} - ${img.name}`);
-      const snap = await uploadBytes(imgRef, img);
-
       try {
+        const snap = await uploadBytes(imgRef, img);
         const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
         upurl = dlUrl;
       } catch (error) {
         console.error("Error getting download URL:", error);
-        // Handle the error appropriately (e.g., show a message to the user)
       }
     }
-    if (text.trim() !== '') {
-      try {
+
+    // Get the online status of the selected user
+    const UpdatedisOnline = getOnlineStatus(curSelectuser);
+    console.log("UpdatedisOnline", UpdatedisOnline);
+
+    try {
+      if (text.trim() !== '') {
+        // If there's text, add the message with text
         await addDoc(collection(db, "messages", id, "chat"), {
           text,
           from: user1,
           to: user2,
           createdAt: Timestamp.fromDate(new Date()),
           media: upurl || "",
+          read: false,
+          activeStatus: UpdatedisOnline
         });
-
+        setText(''); // Clear the text input
+        setImg(''); 
         await setDoc(doc(db, "lastMsg", id), {
           text,
           from: user1,
@@ -147,142 +167,126 @@ function ChatingApp() {
           media: upurl || "",
           unread: true,
         });
-      
-        // await updateDoc(doc(db, "users", user2), {
-        //   last_Sendorder: Timestamp.fromDate(new Date()),
-        // });
-        await updateDoc(doc(db, "users", user1), {
-          last_Sendorder: Timestamp.fromDate(new Date()),
+      } else {
+        // If there's no text, add the message without text
+        await addDoc(collection(db, "messages", id, "chat"), {
+          from: user1,
+          to: user2,
+          createdAt: Timestamp.fromDate(new Date()),
+          media: upurl || "",
+          read: false,
+          activeStatus: UpdatedisOnline
         });
-
-        setText('');
-        setImg('');
-      } catch (error) {
-        console.error("Error adding document:", error);
-        // Handle the error appropriately (e.g., show a message to the user)
+        setText(''); // Clear the text input
+        setImg('');  
+        await setDoc(doc(db, "lastMsg", id), {
+          text: lastmsg_img,
+          from: user1,
+          to: user2,
+          lastmsg_time: Timestamp.fromDate(new Date()),
+          media: upurl || "",
+          unread: true,
+        });
       }
+    } catch (error) {
+      console.error("Error adding document:", error);
     }
   };
 
-
-
-  // const chatListItems = searchInput
-  //   ? searchResults.map((item, index) => (
-  //     <div className="chatItem" key={index}>
-  //     <div className="imgbx">
-  //       <img src={"http://localhost:5000/images/"+ item.id}  className="cover"  />
-  //     </div>
-  //     <div className="chatInfo">
-  //       <p className="chatName" onClick={()=>selectUserchat(item.id,item.firstname)}>{item.firstname}</p>
-  //     </div>
-  //   </div>
-
-  //     )): chatblock.map((item, index) => (
-  //     <div className="chatItem" key={index}>
-  //     <div className="imgbx">
-  //       <img src={"http://localhost:5000/images/"+ item.id}  className="cover"  />
-  //     </div>
-  //     <div className="chatInfo">
-  //       <p className="chatName" onClick={()=>selectUserchat(item.id,item.firstname)}>{item.firstname}</p>
-  //       </div>
-  //   </div>
-  //     ));
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       sendMessage();
     }
   };
-  const [selectedChatMessages, setSelectedChatMessages] = useState([]);
-  const [img, setImg] = useState("");
-  useEffect(() => {
-
-    const unsubscribe = firebase.firestore().collection('chats')
-      .orderBy('createdAt')
-      .get()
-      .then((querySnapshot) => {
-        const allChats = [];
-        querySnapshot.forEach((doc) => {
-          allChats.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        setmessage(allChats);
-        setExistingConversations(allChats)
-
-      })
-      .catch((error) => {
-        console.error('Error getting documents: ', error);
-      });
-
-  }, []);
-
-
   let Profilename = sessionStorage.getItem("profileName", Profilename);
 
-  const [ticketid, setTicketid] = useState(ChatViewid);
-  const [chatuser_name, setChatuser_name] = useState(Profilename);
-  const [sendmsgId, setSendmsgId] = useState('');
-  const [chat_active, setChatactive] = useState();
-  const [chat, setChat] = useState('');
-  const [curtactUser, setCurtactUser] = useState();
+
 
   const user1 = auth.currentUser ? auth.currentUser.uid : null;
-  // useEffect(() => {
-  //   const usersRef = collection(db, "users");
-  //   // create query object
-  //   const q = query(usersRef, where("uid", "not-in", [user1]));
-  //   // execute query
-  //   const unsub = onSnapshot(q, (querySnapshot) => {
-  //     let users = [];
-  //     querySnapshot.forEach((doc) => {
-  //       users.push(doc.data());
-  //     });
-  //     setUsers(users);
-  //   });
-  //   return () => unsub();
-  // }, []);
+
+  const getOnlineStatus = (uid) => {
+    const user = activeUser.find(user => user.uid === uid);
+    console.log("get user online or not", user)
+    return user ? user.isOnline : null;
+  };
 
   const selectUser = async (user) => {
-    setChat(user)
-    setdefault_loading(true)
-    setChatuser_name(user.newfirstname);
+    const user1 = auth.currentUser.uid;
     const user2 = user.uid;
-    setCurtactUser(user1)
+
+    // Set initial states
+    setCurSelectUser( user.uid);
+    setChat(user);
+    setDefaultLoading(true);
+    setChatUserName(user.newfirstname);
+    setCurTactUser(user1);
+
+    // Get online status
+    const isOnline = await getOnlineStatus(user2);
+    setIsOnline(isOnline);
+
+    // Generate chat ID based on user IDs
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    console.log("read messages: usersid", id);
+
+    setNewUserChatID();
+
+    // Get reference to messages collection
     const msgsRef = collection(db, "messages", id, "chat");
     const q = query(msgsRef, orderBy("createdAt", "asc"));
-    onSnapshot(q, (querySnapshot) => {
+
+    // Subscribe to changes in the chat messages
+    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
       let msgs = [];
-      querySnapshot.forEach((doc) => {
-        msgs.push(doc.data());
+      let promises = [];
+
+      querySnapshot.forEach((docSnapshot) => {
+        const msgData = docSnapshot.data();
+        // msgData.activeStatus = isOnline ? true : msgData.activeStatus;
+
+        // if (isOnline) {
+        //   const docRef = doc(msgsRef, docSnapshot.id);
+        //   promises.push(updateDoc(docRef, { activeStatus: true }));
+        // }
+
+        msgs.push(msgData);
       });
+
+      //       if (isOnline) {
+      //           const docRef = doc(msgsRef, docSnapshot.id);
+      //           promises.push(updateDoc(docRef, { activeStatus: true}));
+      //           msgs.push(msgData);
+      //       } else {
+      //           // If offline, just add msgData to msgs
+      //           msgs.push(msgData);
+      //       }
+      // Wait for all updateDoc operations to complete
+      await Promise.all(promises);
+
       setMsgs(msgs);
     });
 
+    // Get the last message document and update unread status if needed
     const docSnap = await getDoc(doc(db, "lastMsg", id));
     if (docSnap.data() && docSnap.data().from !== user1) {
-      // update last message doc, set unread to false
       await updateDoc(doc(db, "lastMsg", id), { unread: false });
+
+      // Update all messages in the chat to read: true
+      const msgDocs = await getDocs(msgsRef);
+      msgDocs.forEach(async (msgDoc) => {
+        await updateDoc(doc(db, "messages", id, "chat", msgDoc.id), { read: true });
+      });
     }
+
+    // Return the unsubscribe function to clean up the listener
+    return unsubscribe;
   };
 
+
   let prevDate = null;
-  const [searchInput, setSearchInput] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  // const handleSearch = (query) => {
-  //   setSearchInput(query);
-
-  //   // Perform search logic (e.g., filter chatblock based on the query)
-
-  //   const filteredData = query ?users.filter(item => item.newfirstname.toLowerCase().includes(query.toLowerCase())):users;
-  //   setUsers(filteredData)
-  // };
-
-  const [activeUser, setActiveUser] = useState(null);
 
 
-  const [combinedData, setCombinedData] = useState([]);
+
 
 
   useEffect(() => {
@@ -296,9 +300,8 @@ function ChatingApp() {
         const dataFromCollection2 = querySnapshot2.docs.map((doc) => doc.data());
 
         const combinedData = mergeCollections(dataFromCollection1, dataFromCollection2);
-        console.log("combinedData:",combinedData)
 
-      
+
         setUsers(combinedData);
       });
 
@@ -308,18 +311,66 @@ function ChatingApp() {
     return () => unsub1();
   }, []);
 
-  // Example function to merge data based on a condition
   const mergeCollections = (collection1Data, collection2Data) => {
-    // Your merging logic here, e.g., combining data based on some condition
-    // For example, assuming there is a common field 'id' in both collections
+
     const mergedData = collection1Data.map((item1) => {
       const matchingItem = collection2Data.find((item2) => item2.from === item1.uid || item2.to === item1.uid);
       return { ...item1, ...matchingItem };
     });
     return mergedData;
   };
+  let filteredUsers = users.filter(user => user.uid !== user1);
+
+  useEffect(() => {
+    if (users && users.length > 0) {
+      setInitialOrder([...users]);
+    }
+  }, [users]);
 
 
+
+
+  // If there are users available, apply sorting
+  if (filteredUsers.length > 0) {
+    filteredUsers = filteredUsers.sort((a, b) => {
+      const timeA = a.lastmsg_time ? (a.lastmsg_time.seconds * 1000 + (a.lastmsg_time.nanoseconds || 0) / 1000000) : 0;
+      const timeB = b.lastmsg_time ? (b.lastmsg_time.seconds * 1000 + (b.lastmsg_time.nanoseconds || 0) / 1000000) : 0;
+
+      // If last message times are the same, maintain the initial order
+      if (timeA === timeB && initialOrder.length > 0) {
+        const indexA = initialOrder.findIndex(user => user.uid === a.uid);
+        const indexB = initialOrder.findIndex(user => user.uid === b.uid);
+        return indexA - indexB;
+      }
+
+      return timeB - timeA;
+    });
+  }
+
+  filteredUsers = filteredUsers.filter(user => {
+    return searchInput.toLowerCase() === ''
+      ? true
+      : (user.newfirstname || '').toLowerCase().includes(searchInput.toLowerCase());
+  });
+
+  const handleFileupdate = (event) => {
+    setImg(event.target.files[0]);
+    setDisplay(URL.createObjectURL(event.target.files[0]))
+    setShowSeltimg(true)
+  }
+  const cancelImgupload = () => {
+    setShowSeltimg(false); // Example action: removing the image
+  };
+  const markAsRead = async (messageId) => {
+    await setDoc(doc(db, "messages", messageId, "chat"), {
+      read: true,
+
+    });
+  };
+  const handleMarkAsRead = () => {
+    console.log("read messages")
+
+  };
   return (
     <div className="home_container">
       <div className="users_container">
@@ -337,31 +388,27 @@ function ChatingApp() {
           {/* <SearchIcon className="Search_icon"/> */}
 
         </div>
-        {users.filter((item) => {
-          return searchInput.toLowerCase() === '' ? item : item.newfirstname.toLowerCase().includes(searchInput)
-        }).map(user => <User
-          key={user.uid}
-          user={user}
-          selectUser={selectUser}
-          chat={chat}
-          user1={user1}
-
-
-        />)}
+        {filteredUsers
+          .map(user => (
+            <User
+              key={user.uid}
+              user={user}
+              selectUser={selectUser}
+              chat={chat}
+              user1={user1}
+            />
+          ))}
 
       </div>
-      <div className="messages_container">
+      <div className="messages_container" >
         {chat ? (
           <>
             <div className="messages_user">
               <img src={chat.imageUrl} />
               <p>{chat.newfirstname}</p>
               <small>{chat.isOnline ? 'Online' : 'Offline'}</small>
-
-
             </div>
-
-            <div className="messages">
+            <div className="messages" onClick={handleMarkAsRead}>
               {msgs.length ? (
                 msgs.map((msg, i) => {
                   const currentDate = msg.createdAt.toDate();
@@ -373,23 +420,30 @@ function ChatingApp() {
                       msg={msg}
                       isPrevDateSame={isPrevDateSame}
                       user1={user1}
+                      markAsRead={markAsRead}
+                      isOnline={isOnline}
                     />
                   );
                 })
               ) : null}
+              {showSeltimg && <>
+                <div className="previewImg">
+
+                  <img src={img ? display : ''} className="stylePreviewimg" />
+                  <CancelIcon className="cancel_img" onClick={cancelImgupload} />
+
+                </div>
+              </>
+              }
             </div>
             <MessageForm
               sendMessage={sendMessage}
               text={text}
               setText={setText}
               setImg={setImg}
+              handleFileupdate={handleFileupdate}
             />
-
-
           </>
-
-
-
         ) : (
           <h3 className="no_conv">Select a user to start conversation</h3>
         )}
@@ -397,8 +451,6 @@ function ChatingApp() {
     </div>
   )
 }
-
-
 export default ChatingApp;
 
 

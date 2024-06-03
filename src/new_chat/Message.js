@@ -1,11 +1,27 @@
 import React, { useRef, useEffect } from "react";
 import Moment from "react-moment";
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 import './Message.css';
+import DoneIcon from '@mui/icons-material/Done';
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  Timestamp,
+  orderBy,
+  setDoc,
+  doc,
+  getDoc,
+  limit,
+  updateDoc,
+  getDocs,
+} from "firebase/firestore";
+import { db, auth, storage } from "../firebase";
 
-const Message = ({ msg, user1, isPrevDateSame }) => {
+const Message = ({ msg, user1, isPrevDateSame, markAsRead,isOnline }) => {
   const scrollRef = useRef();
-  console.log("isPrevDateSame",isPrevDateSame)
-
   useEffect(() => {
     scrollRef.current && scrollRef.current.scrollIntoView({ behavior: "smooth" });
   }, [msg]);
@@ -39,15 +55,19 @@ const Message = ({ msg, user1, isPrevDateSame }) => {
     }
   })();
 
+ 
   return (
     <div className={`message_wrapper ${msg.from === user1 ? "own" : ""}`} ref={scrollRef}>
       {!isPrevDateSame && <div className="messageDate">{comparisonResult}</div>}
       <p className={msg.from === user1 ? "me" : "friend"}>
         {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
         {msg.text}
-        <br />
+        &nbsp;&nbsp;&nbsp;
         <small>
-          <Moment format="h:mm A">{msg.createdAt.toDate()}</Moment>
+          <Moment format="h:mm a">{msg.createdAt.toDate()}</Moment>
+          {msg.from===user1 ?msg.activeStatus === false ? <DoneIcon style={{ width: "17px", height: "17px", color: "gray" }} />
+            : <DoneAllIcon style={{ width: "17px", height: "17px",color: msg.read===true ? "blue":"gray" }} />
+          :""}
         </small>
       </p>
     </div>

@@ -2,18 +2,19 @@ import React from "react";
 import Attachment from "./Attachment";
 import './MessageForm.css';
 import SendIcon from '@mui/icons-material/Send';
+import CollectionsIcon from '@mui/icons-material/Collections';
 
-
-const MessageForm=({ sendMessage, text, setText, setImg })=>{
+const MessageForm=({ sendMessage, text, setText, setImg ,handleFileupdate})=>{
 
     return(
         <form className="message_form" onSubmit={sendMessage} >
             <div className="attachment_upload">
           <label htmlFor="img">
-          <Attachment />
+          <CollectionsIcon style={{color:"#5e5b8e",cursor:"pointer"}}/>
+          
         </label>
         <input
-          onChange={(e) => setImg(e.target.files[0])}
+          onChange={handleFileupdate}
           type="file"
           id="img"
           accept="image/*"
@@ -33,6 +34,7 @@ const MessageForm=({ sendMessage, text, setText, setImg })=>{
           <SendIcon className="sendIcon" onClick={sendMessage}  />
 
         </div>
+      
 
       
       </form>
